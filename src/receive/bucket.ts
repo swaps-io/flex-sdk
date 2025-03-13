@@ -1,6 +1,5 @@
-import { concatHex, Hex, AsHexValue, asHex } from '../external';
-
 import { FLEX_RECEIVE_NONCES_PER_BUCKET } from '../constants';
+import { AsHexValue, Hex, asHex, concatHex } from '../external';
 
 export interface FlexEncodeReceiveStateBucketParams {
   receiver: AsHexValue;
@@ -11,10 +10,7 @@ export function flexEncodeReceiveStateBucket(params: FlexEncodeReceiveStateBucke
   const nonce = BigInt(asHex(params.nonce, 12));
   const nonceBucket = nonce / FLEX_RECEIVE_NONCES_PER_BUCKET;
 
-  return concatHex([
-    asHex(params.receiver, 20),
-    asHex(nonceBucket, 12),
-  ]);
+  return concatHex([asHex(params.receiver, 20), asHex(nonceBucket, 12)]);
 }
 
 export interface FlexEncodeReceiveStateOffsetParams {
@@ -33,8 +29,5 @@ export interface FlexEncodeReceiveBucketStateDataParams {
 }
 
 export function flexEncodeReceiveBucketStateData(params: FlexEncodeReceiveBucketStateDataParams): Hex {
-  return concatHex([
-    asHex(params.hash, 20),
-    asHex(params.state, 12),
-  ]);
+  return concatHex([asHex(params.hash, 20), asHex(params.state, 12)]);
 }

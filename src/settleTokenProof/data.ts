@@ -1,6 +1,10 @@
 import { AsHexValue, Hex } from '../external';
-
-import { flexCalcReceiveHash, flexEncodeReceiveData0, flexEncodeReceiveData1, flexEncodeReceiveData2 } from '../receive';
+import {
+  flexCalcReceiveHash,
+  flexEncodeReceiveData0,
+  flexEncodeReceiveData1,
+  flexEncodeReceiveData2,
+} from '../receive';
 import { flexEncodeSettleProofData0, flexEncodeSettleProofData1, flexEncodeSettleProofData2 } from '../settleProof';
 
 export interface FlexEncodeSettleTokenProofDataParams {
@@ -51,7 +55,7 @@ export function flexEncodeSettleTokenProofData(params: FlexEncodeSettleTokenProo
       eventSignature: params.eventSignature,
     }),
     flexEncodeSettleProofData2({
-      receiveHash: flexCalcReceiveHash({ data: receiveData, }),
+      receiveHash: flexCalcReceiveHash({ data: receiveData }),
     }),
   ];
 
@@ -60,4 +64,4 @@ export function flexEncodeSettleTokenProofData(params: FlexEncodeSettleTokenProo
     settleProofData,
   };
   return data;
-};
+}

@@ -1,5 +1,4 @@
-import { Hex, AsHexValue } from '../external';
-
+import { AsHexValue, Hex } from '../external';
 import { flexCalcSendHash } from '../send';
 
 import { FlexSendTokenFloatData } from './data';

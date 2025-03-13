@@ -8,4 +8,4 @@ export function flexPackFlags(flags: readonly FlexFlagValue[], shift = 0): bigin
     }
   }
   return value;
-};
+}

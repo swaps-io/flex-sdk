@@ -1,8 +1,8 @@
 import { AsHexValue } from '../external';
+import { FlexEncodeSettleTokenDataParams, FlexSettleTokenData, flexEncodeSettleTokenData } from '../settleToken';
 
-import { flexEncodeSettleTokenData, FlexEncodeSettleTokenDataParams, FlexSettleTokenData } from '../settleToken';
-
-export interface FlexEncodeRefundTokenDataParams extends Omit<FlexEncodeSettleTokenDataParams, 'confirm' | 'settleReceiver'> {
+export interface FlexEncodeRefundTokenDataParams
+  extends Omit<FlexEncodeSettleTokenDataParams, 'confirm' | 'settleReceiver'> {
   refundReceiver: AsHexValue;
 }
 
@@ -14,4 +14,4 @@ export function flexEncodeRefundTokenData(params: FlexEncodeRefundTokenDataParam
     confirm: false,
     settleReceiver: params.refundReceiver,
   });
-};
+}

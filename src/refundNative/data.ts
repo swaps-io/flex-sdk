@@ -1,8 +1,8 @@
 import { AsHexValue } from '../external';
+import { FlexEncodeSettleNativeDataParams, FlexSettleNativeData, flexEncodeSettleNativeData } from '../settleNative';
 
-import { flexEncodeSettleNativeData, FlexEncodeSettleNativeDataParams, FlexSettleNativeData } from '../settleNative';
-
-export interface FlexEncodeRefundNativeDataParams extends Omit<FlexEncodeSettleNativeDataParams, 'confirm' | 'settleReceiver'> {
+export interface FlexEncodeRefundNativeDataParams
+  extends Omit<FlexEncodeSettleNativeDataParams, 'confirm' | 'settleReceiver'> {
   refundReceiver: AsHexValue;
 }
 
@@ -14,4 +14,4 @@ export function flexEncodeRefundNativeData(params: FlexEncodeRefundNativeDataPar
     confirm: false,
     settleReceiver: params.refundReceiver,
   });
-};
+}

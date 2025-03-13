@@ -1,5 +1,4 @@
-import { asHex, AsHexValue, concatHex, Hex } from '../external';
-
+import { AsHexValue, Hex, asHex, concatHex } from '../external';
 import { flexPackFlags } from '../flags';
 
 export interface FlexEncodeSettleData0Params {
@@ -8,9 +7,5 @@ export interface FlexEncodeSettleData0Params {
 }
 
 export function flexEncodeSettleData0(params: FlexEncodeSettleData0Params): Hex {
-  return concatHex([
-    asHex(0, 8),
-    asHex(flexPackFlags([params.confirm], 31), 4),
-    asHex(params.receiver, 20),
-  ]);
+  return concatHex([asHex(0, 8), asHex(flexPackFlags([params.confirm], 31), 4), asHex(params.receiver, 20)]);
 }

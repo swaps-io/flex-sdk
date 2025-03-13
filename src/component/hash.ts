@@ -1,4 +1,4 @@
-import { Hex, keccak256, AsHexValue, concatHex, asHex } from '../external';
+import { AsHexValue, Hex, asHex, concatHex, keccak256 } from '../external';
 
 import { flexAssignComponentDomain } from './domain';
 

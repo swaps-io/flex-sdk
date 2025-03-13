@@ -1,4 +1,4 @@
-import { asHex, AsHexValue, concatHex, Hex } from '../external';
+import { AsHexValue, Hex, asHex, concatHex } from '../external';
 
 export interface FlexEncodeSendData1Params {
   start: AsHexValue;

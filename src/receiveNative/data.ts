@@ -1,5 +1,4 @@
 import { AsHexValue, Hex } from '../external';
-
 import { flexCalcReceiveHash, flexEncodeReceiveData0, flexEncodeReceiveData1 } from '../receive';
 import { flexEncodeReceiveFromData0, flexEncodeReceiveFromData1 } from '../receiveFrom';
 
@@ -39,7 +38,7 @@ export function flexEncodeReceiveNativeData(params: FlexEncodeReceiveNativeDataP
       sender: params.sender,
     }),
     flexEncodeReceiveFromData1({
-      receiveHash: flexCalcReceiveHash({ data: receiveData, }),
+      receiveHash: flexCalcReceiveHash({ data: receiveData }),
     }),
   ];
 
@@ -48,4 +47,4 @@ export function flexEncodeReceiveNativeData(params: FlexEncodeReceiveNativeDataP
     receiveFromData,
   };
   return data;
-};
+}

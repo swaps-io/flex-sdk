@@ -1,7 +1,5 @@
-import { asHex, AsHexValue, Hex } from '../external';
-
 import { FLEX_SEND_FLOAT_MAX_AMOUNT } from '../constants';
-
+import { AsHexValue, Hex, asHex } from '../external';
 import { flexPackFlags } from '../flags';
 
 export interface FlexEncodeSendFloatData2Params {
@@ -15,10 +13,5 @@ export function flexEncodeSendFloatData2(params: FlexEncodeSendFloatData2Params)
     throw new Error('Flex send float amount exceeds max value');
   }
 
-  return asHex(
-    flexPackFlags([
-      params.skipAmountEmit,
-    ], 255) | amount,
-    32,
-  );
+  return asHex(flexPackFlags([params.skipAmountEmit], 255) | amount, 32);
 }

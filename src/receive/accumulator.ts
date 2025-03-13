@@ -1,6 +1,5 @@
-import { asHex, AsHexValue, Hex } from '../external';
-
 import { flexCalcAccumulatorHash } from '../accumulator';
+import { AsHexValue, Hex, asHex } from '../external';
 
 export interface FlexEncodeReceiveAccumulatorHashParams {
   orderHash: AsHexValue;

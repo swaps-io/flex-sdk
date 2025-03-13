@@ -1,4 +1,4 @@
-import { asHex, AsHexValue, concatHex, Hex } from '../external';
+import { AsHexValue, Hex, asHex, concatHex } from '../external';
 
 export interface FlexEncodeSendSaveStateBucketParams {
   saver: AsHexValue;
@@ -6,8 +6,5 @@ export interface FlexEncodeSendSaveStateBucketParams {
 }
 
 export function flexEncodeSendSaveStateBucket(params: FlexEncodeSendSaveStateBucketParams): Hex {
-  return concatHex([
-    asHex(params.saver, 20),
-    asHex(params.slot, 12),
-  ]);
+  return concatHex([asHex(params.saver, 20), asHex(params.slot, 12)]);
 }

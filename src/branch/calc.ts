@@ -1,5 +1,4 @@
 import { Hex } from '../external';
-
 import { FlexTree } from '../tree';
 
 import { FlexBranch } from './data';

@@ -1,10 +1,7 @@
-import { asHex, AsHexValue, concatHex, Hex } from '../external';
-
 import { FlexBranch } from '../branch';
-
 import { flexAssignComponentDomain } from '../component';
-
 import { FLEX_SEND_PROOF_NATIVE_DATA3 } from '../constants';
+import { AsHexValue, Hex, asHex, concatHex } from '../external';
 
 export interface FlexEncodeSendFailProofParams {
   variant: AsHexValue;

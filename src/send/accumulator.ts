@@ -1,6 +1,5 @@
-import { asHex, AsHexValue, concatHex, Hex, sliceHex } from '../external';
-
 import { flexCalcAccumulatorHash } from '../accumulator';
+import { AsHexValue, Hex, asHex, concatHex, sliceHex } from '../external';
 
 export interface FlexEncodeSendAccumulatorDataParams {
   orderHash: AsHexValue;
@@ -8,10 +7,7 @@ export interface FlexEncodeSendAccumulatorDataParams {
 }
 
 export function flexEncodeSendAccumulatorData({ orderHash, start }: FlexEncodeSendAccumulatorDataParams): Hex {
-  return concatHex([
-    sliceHex(asHex(orderHash, 32), 0, 26),
-    asHex(start, 6),
-  ]);
+  return concatHex([sliceHex(asHex(orderHash, 32), 0, 26), asHex(start, 6)]);
 }
 
 export interface FlexCalcSendAccumulatorHashParams {

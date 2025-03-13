@@ -1,6 +1,6 @@
 import { Hex, SimpleMerkleTree } from '../external';
 
-import {FlexTree} from './data';
+import { FlexTree } from './data';
 
 export interface FlexCalcTreeParams {
   leaves: readonly Hex[];

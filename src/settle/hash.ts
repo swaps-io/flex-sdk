@@ -1,6 +1,5 @@
-import { Hex, AsHexValue } from '../external';
-
 import { flexCalcComponentHash } from '../component';
+import { AsHexValue, Hex } from '../external';
 
 export interface FlexCalcSettleHashParams {
   domain: AsHexValue;

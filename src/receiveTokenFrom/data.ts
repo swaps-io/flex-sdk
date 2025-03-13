@@ -1,6 +1,10 @@
 import { AsHexValue, Hex } from '../external';
-
-import { flexCalcReceiveHash, flexEncodeReceiveData0, flexEncodeReceiveData1, flexEncodeReceiveData2 } from '../receive';
+import {
+  flexCalcReceiveHash,
+  flexEncodeReceiveData0,
+  flexEncodeReceiveData1,
+  flexEncodeReceiveData2,
+} from '../receive';
 import { flexEncodeReceiveFromData0, flexEncodeReceiveFromData1 } from '../receiveFrom';
 
 export interface FlexEncodeReceiveTokenFromDataParams {
@@ -44,7 +48,7 @@ export function flexEncodeReceiveTokenFromData(params: FlexEncodeReceiveTokenFro
       sender: params.sender,
     }),
     flexEncodeReceiveFromData1({
-      receiveHash: flexCalcReceiveHash({ data: receiveData, }),
+      receiveHash: flexCalcReceiveHash({ data: receiveData }),
     }),
   ];
 
@@ -65,4 +69,4 @@ export function flexEncodeReceiveTokenFromData(params: FlexEncodeReceiveTokenFro
     receivePackData,
   };
   return data;
-};
+}

@@ -1,4 +1,4 @@
-import { Hex, concatHex, AsHexValue, asHex } from '../external';
+import { AsHexValue, Hex, asHex, concatHex } from '../external';
 
 export interface FlexEncodeAllocateReceiveData0Params {
   receiver: AsHexValue;
@@ -7,9 +7,5 @@ export interface FlexEncodeAllocateReceiveData0Params {
 }
 
 export function flexEncodeAllocateReceiveData0(params: FlexEncodeAllocateReceiveData0Params): Hex {
-  return concatHex([
-    asHex(params.totalBuckets, 6),
-    asHex(params.startNonce, 6),
-    asHex(params.receiver, 20),
-  ]);
+  return concatHex([asHex(params.totalBuckets, 6), asHex(params.startNonce, 6), asHex(params.receiver, 20)]);
 }

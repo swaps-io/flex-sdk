@@ -1,5 +1,4 @@
-import { Hex, AsHexValue } from '../external';
-
+import { AsHexValue, Hex } from '../external';
 import { flexCalcSettleProofHash } from '../settleProof';
 
 import { FlexSettleTokenProofData } from './data';

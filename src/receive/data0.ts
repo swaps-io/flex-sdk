@@ -1,7 +1,5 @@
-import { asHex, AsHexValue, concatHex, Hex } from '../external';
-
 import { FLEX_MAX_RECEIVE_DEADLINE } from '../constants';
-
+import { AsHexValue, Hex, asHex, concatHex } from '../external';
 import { flexPackFlags } from '../flags';
 
 export interface FlexEncodeReceiveData0Params {
@@ -21,11 +19,8 @@ export function flexEncodeReceiveData0(params: FlexEncodeReceiveData0Params): He
 
   return concatHex([
     asHex(
-      flexPackFlags([
-        params.contractSignature,
-        params.noMessageSignatureWrap,
-        params.noRetryAsContractSignature,
-      ], 45) | deadline,
+      flexPackFlags([params.contractSignature, params.noMessageSignatureWrap, params.noRetryAsContractSignature], 45) |
+        deadline,
       6,
     ),
     asHex(params.nonce, 6),

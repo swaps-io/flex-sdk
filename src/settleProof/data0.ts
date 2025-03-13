@@ -1,7 +1,5 @@
-import { asHex, AsHexValue, concatHex, Hex } from '../external';
-
 import { FLEX_MAX_PROOF_CHAIN } from '../constants/proof';
-
+import { AsHexValue, Hex, asHex, concatHex } from '../external';
 import { flexPackFlags } from '../flags';
 
 export interface FlexEncodeSettleProofData0Params {

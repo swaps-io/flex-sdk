@@ -1,5 +1,4 @@
 import { AsHexValue, Hex } from '../external';
-
 import { flexEncodeSendData0, flexEncodeSendData1 } from '../send';
 import { flexEncodeSendFloatData2 } from '../sendFloat';
 
@@ -38,4 +37,4 @@ export function flexEncodeSendNativeFloatData(params: FlexEncodeSendNativeFloatD
     sendData,
   };
   return data;
-};
+}

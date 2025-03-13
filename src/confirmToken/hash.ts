@@ -1,6 +1,5 @@
 import { Hex } from '../external';
-
-import { flexCalcSettleTokenHash, FlexCalcSettleTokenHashParams } from '../settleToken';
+import { FlexCalcSettleTokenHashParams, flexCalcSettleTokenHash } from '../settleToken';
 
 export type FlexCalcConfirmTokenHashParams = FlexCalcSettleTokenHashParams;
 

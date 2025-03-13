@@ -1,0 +1,16 @@
+# Dependencies
+/node_modules
+.yarn/*
+!.yarn/patches
+
+# Build
+/dist
+
+# Docs
+/docs
+
+# Secrets
+.env
+
+# Misc
+.DS_Store

@@ -1,12 +1,11 @@
-import { Hex, AsHexValue } from '../external';
-
+import { AsHexValue, Hex } from '../external';
 import { flexCalcReceiveFromHash } from '../receiveFrom';
 
 import { FlexReceiveNativeData } from './data';
 
 export interface FlexCalcReceiveNativeHashParams {
   domain: AsHexValue;
-  data: Pick<FlexReceiveNativeData, 'receiveFromData'>,
+  data: Pick<FlexReceiveNativeData, 'receiveFromData'>;
 }
 
 export function flexCalcReceiveNativeHash(params: FlexCalcReceiveNativeHashParams): Hex {
