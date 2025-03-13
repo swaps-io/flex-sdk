@@ -1,9 +1,11 @@
-import { AsHexValue, Hex, asHex } from '../external';
+import { AsHexValue, Hex, getExternal } from '../external/inner';
 
 export interface FlexEncodeSettleProofData2Params {
   receiveHash: AsHexValue;
 }
 
 export function flexEncodeSettleProofData2(params: FlexEncodeSettleProofData2Params): Hex {
-  return asHex(params.receiveHash, 32);
+  const e = getExternal();
+
+  return e.asHex(params.receiveHash, 32);
 }

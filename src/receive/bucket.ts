@@ -1,5 +1,5 @@
 import { FLEX_RECEIVE_NONCES_PER_BUCKET } from '../constants';
-import { AsHexValue, Hex, asHex, concatHex } from '../external';
+import { AsHexValue, Hex, getExternal } from '../external/inner';
 
 export interface FlexEncodeReceiveStateBucketParams {
   receiver: AsHexValue;
@@ -7,10 +7,11 @@ export interface FlexEncodeReceiveStateBucketParams {
 }
 
 export function flexEncodeReceiveStateBucket(params: FlexEncodeReceiveStateBucketParams): Hex {
-  const nonce = BigInt(asHex(params.nonce, 12));
+  const e = getExternal();
+  const nonce = BigInt(e.asHex(params.nonce, 12));
   const nonceBucket = nonce / FLEX_RECEIVE_NONCES_PER_BUCKET;
 
-  return concatHex([asHex(params.receiver, 20), asHex(nonceBucket, 12)]);
+  return e.concatHex([e.asHex(params.receiver, 20), e.asHex(nonceBucket, 12)]);
 }
 
 export interface FlexEncodeReceiveStateOffsetParams {
@@ -18,7 +19,8 @@ export interface FlexEncodeReceiveStateOffsetParams {
 }
 
 export function flexEncodeReceiveStateOffset(params: FlexEncodeReceiveStateOffsetParams): bigint {
-  const nonce = BigInt(asHex(params.nonce, 12));
+  const e = getExternal();
+  const nonce = BigInt(e.asHex(params.nonce, 12));
   const nonceOffset = nonce % FLEX_RECEIVE_NONCES_PER_BUCKET;
   return nonceOffset;
 }
@@ -29,5 +31,6 @@ export interface FlexEncodeReceiveBucketStateDataParams {
 }
 
 export function flexEncodeReceiveBucketStateData(params: FlexEncodeReceiveBucketStateDataParams): Hex {
-  return concatHex([asHex(params.hash, 20), asHex(params.state, 12)]);
+  const e = getExternal();
+  return e.concatHex([e.asHex(params.hash, 20), e.asHex(params.state, 12)]);
 }

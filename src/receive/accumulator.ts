@@ -1,12 +1,14 @@
 import { flexCalcAccumulatorHash } from '../accumulator';
-import { AsHexValue, Hex, asHex } from '../external';
+import { AsHexValue, Hex, getExternal } from '../external/inner';
 
 export interface FlexEncodeReceiveAccumulatorHashParams {
   orderHash: AsHexValue;
 }
 
 export function flexEncodeReceiveAccumulatorHash({ orderHash }: FlexEncodeReceiveAccumulatorHashParams): Hex {
-  return asHex(orderHash, 32);
+  const e = getExternal();
+
+  return e.asHex(orderHash, 32);
 }
 
 export interface FlexCalcReceiveAccumulatorHashParams {

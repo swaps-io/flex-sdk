@@ -1,4 +1,4 @@
-import { Hex } from '../external';
+import { Hex } from '../external/inner';
 import { FlexCalcSettleTokenHashParams, flexCalcSettleTokenHash } from '../settleToken';
 
 export type FlexCalcConfirmTokenHashParams = FlexCalcSettleTokenHashParams;

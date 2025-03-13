@@ -1,4 +1,4 @@
-import { Hex } from '../external';
+import { Hex, getExternal } from '../external/inner';
 import { FlexTree } from '../tree';
 
 import { FlexBranch } from './data';
@@ -9,6 +9,8 @@ export interface FlexCalcBranchParams {
 }
 
 export function flexCalcBranch({ tree, leaf }: FlexCalcBranchParams): FlexBranch {
-  const proof = tree.inner.getProof(leaf);
-  return proof as FlexBranch;
+  const e = getExternal();
+
+  const proof = e.createProof(tree.inner, leaf);
+  return proof;
 }

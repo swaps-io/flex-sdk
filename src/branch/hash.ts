@@ -1,4 +1,4 @@
-import { Hex, processProof } from '../external';
+import { Hex, getExternal } from '../external/inner';
 
 import { FlexBranch } from './data';
 
@@ -8,6 +8,7 @@ export interface FlexCalcBranchHashParams {
 }
 
 export function flexCalcBranchHash({ leaf, branch }: FlexCalcBranchHashParams): Hex {
-  const hash = processProof(leaf, branch as FlexBranch);
-  return hash as Hex;
+  const e = getExternal();
+  const hash = e.processProof(leaf, branch);
+  return hash;
 }

@@ -1,5 +1,5 @@
 import { FLEX_MAX_PROOF_CHAIN } from '../constants/proof';
-import { AsHexValue, Hex, asHex, concatHex } from '../external';
+import { AsHexValue, Hex, getExternal } from '../external/inner';
 import { flexPackFlags } from '../flags';
 
 export interface FlexEncodeSettleProofData0Params {
@@ -9,14 +9,16 @@ export interface FlexEncodeSettleProofData0Params {
 }
 
 export function flexEncodeSettleProofData0(params: FlexEncodeSettleProofData0Params): Hex {
-  const eventChain = BigInt(asHex(params.eventChain, 4));
+  const e = getExternal();
+
+  const eventChain = BigInt(e.asHex(params.eventChain, 4));
   if (eventChain > FLEX_MAX_PROOF_CHAIN) {
     throw new Error('Flex proof chain exceeds max value');
   }
 
-  return concatHex([
-    asHex(0, 8),
-    asHex(flexPackFlags([params.confirm], 31) | eventChain, 4),
-    asHex(params.receiver, 20),
+  return e.concatHex([
+    e.asHex(0, 8),
+    e.asHex(flexPackFlags([params.confirm], 31) | eventChain, 4),
+    e.asHex(params.receiver, 20),
   ]);
 }

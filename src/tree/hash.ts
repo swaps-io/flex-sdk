@@ -1,4 +1,4 @@
-import { Hex } from '../external';
+import { Hex, getExternal } from '../external/inner';
 
 import { FlexTree } from './data';
 
@@ -7,5 +7,7 @@ export interface FlexCalcTreeHashParams {
 }
 
 export function flexCalcTreeHash({ tree }: FlexCalcTreeHashParams): Hex {
-  return tree.inner.root as Hex;
+  const e = getExternal();
+
+  return e.processTree(tree.inner);
 }

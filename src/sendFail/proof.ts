@@ -1,7 +1,7 @@
 import { FlexBranch } from '../branch';
 import { flexAssignComponentDomain } from '../component';
 import { FLEX_SEND_PROOF_NATIVE_DATA3 } from '../constants';
-import { AsHexValue, Hex, asHex, concatHex } from '../external';
+import { AsHexValue, Hex, getExternal } from '../external/inner';
 
 export interface FlexEncodeSendFailProofParams {
   variant: AsHexValue;
@@ -14,22 +14,24 @@ export interface FlexEncodeSendFailProofParams {
 }
 
 export function flexEncodeSendFailProof(params: FlexEncodeSendFailProofParams): Hex {
+  const e = getExternal();
+
   let data = params.data.sendData;
   if (data.length === 3) {
     data = [...data, FLEX_SEND_PROOF_NATIVE_DATA3]; // Native sendData3
   }
 
-  return concatHex([
+  return e.concatHex([
     // ProofHeader
-    asHex(params.variant, 32), // #0: variant
+    e.asHex(params.variant, 32), // #0: variant
     // FlexSendProofData
     flexAssignComponentDomain({ domain: params.domain, data: data[0] }), // #1: sendData0
-    ...data.slice(1).map((d) => asHex(d, 32)), // #2: sendData1, #3: sendData2, #4: sendData3
-    asHex(288, 32), // #5: orderBranch offset (#9x32)
-    asHex(params.failBaseHash, 32), // #6: failBaseHash
-    asHex(params.saveBucket, 32), // #7: saveBucket
-    concatHex([asHex(0, 26), asHex(params.saveTime, 6)]), // #8: saveTime
-    asHex(params.branch.length, 32), // #9: orderBranch length
+    ...data.slice(1).map((d) => e.asHex(d, 32)), // #2: sendData1, #3: sendData2, #4: sendData3
+    e.asHex(288, 32), // #5: orderBranch offset (#9x32)
+    e.asHex(params.failBaseHash, 32), // #6: failBaseHash
+    e.asHex(params.saveBucket, 32), // #7: saveBucket
+    e.concatHex([e.asHex(0, 26), e.asHex(params.saveTime, 6)]), // #8: saveTime
+    e.asHex(params.branch.length, 32), // #9: orderBranch length
     ...params.branch, // #10+: orderBranch
   ]);
 }

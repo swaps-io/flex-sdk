@@ -1,4 +1,4 @@
-import { Hex } from '../external';
+import { Hex } from '../external/inner';
 import { FlexCalcSettleNativeProofHashParams, flexCalcSettleNativeProofHash } from '../settleNativeProof';
 
 export type FlexCalcConfirmNativeProofHashParams = FlexCalcSettleNativeProofHashParams;

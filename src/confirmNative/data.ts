@@ -1,4 +1,4 @@
-import { AsHexValue } from '../external';
+import { AsHexValue } from '../external/inner';
 import { FlexEncodeSettleNativeDataParams, FlexSettleNativeData, flexEncodeSettleNativeData } from '../settleNative';
 
 export interface FlexEncodeConfirmNativeDataParams

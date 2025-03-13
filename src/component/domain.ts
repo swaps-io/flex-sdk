@@ -1,4 +1,4 @@
-import { AsHexValue, Hex, asHex, concatHex, sliceHex } from '../external';
+import { AsHexValue, Hex, getExternal } from '../external/inner';
 
 export interface FlexAssignComponentDomainParams {
   domain: AsHexValue;
@@ -6,5 +6,7 @@ export interface FlexAssignComponentDomainParams {
 }
 
 export function flexAssignComponentDomain(params: FlexAssignComponentDomainParams): Hex {
-  return concatHex([asHex(params.domain, 8), sliceHex(asHex(params.data, 32), 8)]);
+  const e = getExternal();
+
+  return e.concatHex([e.asHex(params.domain, 8), e.sliceHex(e.asHex(params.data, 32), 8)]);
 }

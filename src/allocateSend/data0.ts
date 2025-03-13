@@ -1,4 +1,4 @@
-import { AsHexValue, Hex, asHex, concatHex } from '../external';
+import { AsHexValue, Hex, getExternal } from '../external/inner';
 
 export interface FlexEncodeAllocateSendData0Params {
   sender: AsHexValue;
@@ -7,5 +7,6 @@ export interface FlexEncodeAllocateSendData0Params {
 }
 
 export function flexEncodeAllocateSendData0(params: FlexEncodeAllocateSendData0Params): Hex {
-  return concatHex([asHex(params.totalBuckets, 6), asHex(params.startGroup, 6), asHex(params.sender, 20)]);
+  const e = getExternal();
+  return e.concatHex([e.asHex(params.totalBuckets, 6), e.asHex(params.startGroup, 6), e.asHex(params.sender, 20)]);
 }

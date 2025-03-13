@@ -1,4 +1,4 @@
-import { AsHexValue, Hex } from '../external';
+import { AsHexValue, Hex } from '../external/inner';
 import { flexCalcReceiveHash, flexEncodeReceiveData0, flexEncodeReceiveData1 } from '../receive';
 import { flexEncodeReceiveFromData0, flexEncodeReceiveFromData1 } from '../receiveFrom';
 

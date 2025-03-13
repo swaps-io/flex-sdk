@@ -1,4 +1,4 @@
-import { Hex } from '../external';
+import { Hex } from '../external/inner';
 import { FlexCalcSettleNativeHashParams, flexCalcSettleNativeHash } from '../settleNative';
 
 export type FlexCalcRefundNativeHashParams = FlexCalcSettleNativeHashParams;

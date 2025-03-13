@@ -1,4 +1,4 @@
-import { Hex, asHex, concatHex } from '../external';
+import { Hex, getExternal } from '../external/inner';
 
 import { FlexBranch } from './data';
 
@@ -13,8 +13,10 @@ export function flexCalcAccumulatorBranch({
   hashBefore,
   hashesAfter,
 }: FlexCalcAccumulatorBranchParams): FlexBranch {
+  const e = getExternal();
+
   const offset = 1 + hashesAfter.length;
-  const header = concatHex([asHex(hashBefore, 20), asHex(offset, 12)]);
+  const header = e.concatHex([e.asHex(hashBefore, 20), e.asHex(offset, 12)]);
   const accumulatorBranch: Hex[] = [header, ...hashesAfter, ...branch];
   return accumulatorBranch;
 }
