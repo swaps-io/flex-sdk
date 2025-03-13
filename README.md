@@ -12,7 +12,9 @@ SDK for interaction with Flex protocol [contracts](https://github.com/swaps-io/f
 The SDK installation process assumes that [Node.js](https://nodejs.org/en) (version 22 is recommended) is installed on
 machine and a project where SDK is planned to be integrated is already created.
 
-1. Install `@swaps-io/flex-sdk` as a NPM package dependency of the project (`npm install @swaps-io/flex-sdk`)
+1. Install `@swaps-io/flex-sdk` as a package dependency of the project:
+   - `npm install @swaps-io/flex-sdk`
+   - `yarn add @swaps-io/flex-sdk`
 2. Install [peer dependencies](#peer-dependencies) of SDK according to the needs of the project
 
 ### Peer Dependencies
