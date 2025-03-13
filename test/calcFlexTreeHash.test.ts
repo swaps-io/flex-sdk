@@ -1,6 +1,6 @@
 import { flexCalcTree, flexCalcTreeHash } from '../src';
 
-test('Should calc hash of tree with 1 leaf', function () {
+test('Should calc hash of tree with 1 leaf', () => {
   const hash = flexCalcTreeHash({
     tree: flexCalcTree({
       leaves: ['0x1111111111111111111111111111111111111111111111111111111111111111'],
@@ -9,7 +9,7 @@ test('Should calc hash of tree with 1 leaf', function () {
   expect(hash).toEqual('0x1111111111111111111111111111111111111111111111111111111111111111');
 });
 
-test('Should calc hash of tree with 2 leaves', function () {
+test('Should calc hash of tree with 2 leaves', () => {
   const hash = flexCalcTreeHash({
     tree: flexCalcTree({
       leaves: [
@@ -21,7 +21,7 @@ test('Should calc hash of tree with 2 leaves', function () {
   expect(hash).toEqual('0x3e92e0db88d6afea9edc4eedf62fffa4d92bcdfc310dccbe943747fe8302e871');
 });
 
-test('Should calc hash of tree with 2 leaves in different order', function () {
+test('Should calc hash of tree with 2 leaves in different order', () => {
   const hash = flexCalcTreeHash({
     tree: flexCalcTree({
       leaves: [
@@ -33,7 +33,7 @@ test('Should calc hash of tree with 2 leaves in different order', function () {
   expect(hash).toEqual('0x3e92e0db88d6afea9edc4eedf62fffa4d92bcdfc310dccbe943747fe8302e871');
 });
 
-test('Should calc hash of tree with 3 leaves', function () {
+test('Should calc hash of tree with 3 leaves', () => {
   const hash = flexCalcTreeHash({
     tree: flexCalcTree({
       leaves: [
@@ -46,7 +46,7 @@ test('Should calc hash of tree with 3 leaves', function () {
   expect(hash).toEqual('0x87fbd8dad686d9536b2ef65757c3415df1b7a4664deb34eda3d91234936eb5fe');
 });
 
-test('Should calc hash of tree with 3 leaves in different order', function () {
+test('Should calc hash of tree with 3 leaves in different order', () => {
   const hash = flexCalcTreeHash({
     tree: flexCalcTree({
       leaves: [
@@ -59,7 +59,7 @@ test('Should calc hash of tree with 3 leaves in different order', function () {
   expect(hash).toEqual('0x87fbd8dad686d9536b2ef65757c3415df1b7a4664deb34eda3d91234936eb5fe');
 });
 
-test('Should calc hash of tree with 7 leaves', function () {
+test('Should calc hash of tree with 7 leaves', () => {
   const hash = flexCalcTreeHash({
     tree: flexCalcTree({
       leaves: [
@@ -76,7 +76,7 @@ test('Should calc hash of tree with 7 leaves', function () {
   expect(hash).toEqual('0x93d5a823d5eff50e7be8f71b8b6b05bb1a8b6efcff3b354dc562c9f291d34523');
 });
 
-test('Should calc hash of tree with 7 leaves in different order', function () {
+test('Should calc hash of tree with 7 leaves in different order', () => {
   const hash = flexCalcTreeHash({
     tree: flexCalcTree({
       leaves: [

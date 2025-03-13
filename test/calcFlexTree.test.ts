@@ -1,6 +1,26 @@
-import { flexCalcTree } from '../src';
+import { SimpleMerkleTree } from '@openzeppelin/merkle-tree';
 
-test('Should not calc tree from 0 leaves', function () {
+import { FlexTree, Hex, flexCalcTree } from '../src';
+
+interface FlexTreeData {
+  tree: Hex[];
+  values: Record<Hex, number>;
+}
+
+function dump(tree: FlexTree): FlexTreeData {
+  if (!(tree.inner instanceof SimpleMerkleTree)) {
+    throw new Error('Unexpected tree implementation');
+  }
+
+  const dump = tree.inner.dump();
+  const data: FlexTreeData = {
+    tree: dump.tree as Hex[],
+    values: Object.fromEntries(dump.values.map(({ value, treeIndex }) => [value, treeIndex])),
+  };
+  return data;
+}
+
+test('Should not calc tree from 0 leaves', () => {
   expect(() => {
     flexCalcTree({
       leaves: [],
@@ -8,11 +28,11 @@ test('Should not calc tree from 0 leaves', function () {
   }).toThrow(Error);
 });
 
-test('Should calc tree from 1 leaf', function () {
+test('Should calc tree from 1 leaf', () => {
   const tree = flexCalcTree({
     leaves: ['0x1111111111111111111111111111111111111111111111111111111111111111'],
   });
-  expect(tree.dump()).toEqual({
+  expect(dump(tree)).toEqual({
     tree: ['0x1111111111111111111111111111111111111111111111111111111111111111'],
     values: {
       '0x1111111111111111111111111111111111111111111111111111111111111111': 0,
@@ -20,14 +40,14 @@ test('Should calc tree from 1 leaf', function () {
   });
 });
 
-test('Should calc tree from 2 leaves', function () {
+test('Should calc tree from 2 leaves', () => {
   const tree = flexCalcTree({
     leaves: [
       '0x1111111111111111111111111111111111111111111111111111111111111111',
       '0x2222222222222222222222222222222222222222222222222222222222222222',
     ],
   });
-  expect(tree.dump()).toEqual({
+  expect(dump(tree)).toEqual({
     tree: [
       '0x3e92e0db88d6afea9edc4eedf62fffa4d92bcdfc310dccbe943747fe8302e871',
       '0x2222222222222222222222222222222222222222222222222222222222222222',
@@ -40,7 +60,7 @@ test('Should calc tree from 2 leaves', function () {
   });
 });
 
-test('Should not calc tree from 2 leaves with duplicate', function () {
+test('Should not calc tree from 2 leaves with duplicate', () => {
   expect(() => {
     flexCalcTree({
       leaves: [
@@ -51,7 +71,7 @@ test('Should not calc tree from 2 leaves with duplicate', function () {
   }).toThrow(Error);
 });
 
-test('Should calc tree from 3 leaves', function () {
+test('Should calc tree from 3 leaves', () => {
   const tree = flexCalcTree({
     leaves: [
       '0x1111111111111111111111111111111111111111111111111111111111111111',
@@ -59,7 +79,7 @@ test('Should calc tree from 3 leaves', function () {
       '0x3333333333333333333333333333333333333333333333333333333333333333',
     ],
   });
-  expect(tree.dump()).toEqual({
+  expect(dump(tree)).toEqual({
     tree: [
       '0x87fbd8dad686d9536b2ef65757c3415df1b7a4664deb34eda3d91234936eb5fe',
       '0x3e92e0db88d6afea9edc4eedf62fffa4d92bcdfc310dccbe943747fe8302e871',
@@ -75,7 +95,7 @@ test('Should calc tree from 3 leaves', function () {
   });
 });
 
-test('Should not calc tree from 3 leaves with duplicate', function () {
+test('Should not calc tree from 3 leaves with duplicate', () => {
   expect(() => {
     flexCalcTree({
       leaves: [
@@ -87,7 +107,7 @@ test('Should not calc tree from 3 leaves with duplicate', function () {
   }).toThrow(Error);
 });
 
-test('Should calc tree from 4 leaves', function () {
+test('Should calc tree from 4 leaves', () => {
   const tree = flexCalcTree({
     leaves: [
       '0x1111111111111111111111111111111111111111111111111111111111111111',
@@ -96,7 +116,7 @@ test('Should calc tree from 4 leaves', function () {
       '0x4444444444444444444444444444444444444444444444444444444444444444',
     ],
   });
-  expect(tree.dump()).toEqual({
+  expect(dump(tree)).toEqual({
     tree: [
       '0x037fd715441fd2ad3d0377ef74079ad743d29c09303ca301614df1ad14da48a7',
       '0xc502f868a3f2d78c5adf18b41f606fc4c6cd8a4a9838125f03aadf235245b910',
@@ -115,7 +135,7 @@ test('Should calc tree from 4 leaves', function () {
   });
 });
 
-test('Should calc tree from 5 leaves', function () {
+test('Should calc tree from 5 leaves', () => {
   const tree = flexCalcTree({
     leaves: [
       '0x1111111111111111111111111111111111111111111111111111111111111111',
@@ -125,7 +145,7 @@ test('Should calc tree from 5 leaves', function () {
       '0x5555555555555555555555555555555555555555555555555555555555555555',
     ],
   });
-  expect(tree.dump()).toEqual({
+  expect(dump(tree)).toEqual({
     tree: [
       '0x46911bbb50261adb58bcf20b8f9e9931c31841c5be43fec112727567c596b846',
       '0x1c5298a5cf72a7725c533fe7ab5883c8c6c54b72989d5464c89a000908a76907',
@@ -147,7 +167,7 @@ test('Should calc tree from 5 leaves', function () {
   });
 });
 
-test('Should calc tree from 11 leaves', function () {
+test('Should calc tree from 11 leaves', () => {
   const tree = flexCalcTree({
     leaves: [
       '0x1111111111111111111111111111111111111111111111111111111111111111',
@@ -163,7 +183,7 @@ test('Should calc tree from 11 leaves', function () {
       '0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',
     ],
   });
-  expect(tree.dump()).toEqual({
+  expect(dump(tree)).toEqual({
     tree: [
       '0xd97496e361db5f21faf3acfebe8f66410d62c6a7b8259a8cc6167613aa678c56',
       '0x8bc369ada0d9f4fbf37069ac0b0baeb6bdf8eac6a59c460d94115c1cc7c376b4',

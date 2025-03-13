@@ -1,6 +1,6 @@
 import { flexCalcBranchHash } from '../src';
 
-test('Should calc hash of 0-length branch', function () {
+test('Should calc hash of 0-length branch', () => {
   const hash = flexCalcBranchHash({
     leaf: '0x1111111111111111111111111111111111111111111111111111111111111111',
     branch: [],
@@ -8,7 +8,7 @@ test('Should calc hash of 0-length branch', function () {
   expect(hash).toEqual('0x1111111111111111111111111111111111111111111111111111111111111111');
 });
 
-test('Should calc hash of 1-length branch', function () {
+test('Should calc hash of 1-length branch', () => {
   const hash = flexCalcBranchHash({
     leaf: '0x1111111111111111111111111111111111111111111111111111111111111111',
     branch: [
@@ -18,7 +18,7 @@ test('Should calc hash of 1-length branch', function () {
   expect(hash).toEqual('0x3e92e0db88d6afea9edc4eedf62fffa4d92bcdfc310dccbe943747fe8302e871');
 });
 
-test('Should calc 2nd hash of 1-length branch', function () {
+test('Should calc 2nd hash of 1-length branch', () => {
   const hash = flexCalcBranchHash({
     leaf: '0x2222222222222222222222222222222222222222222222222222222222222222',
     branch: [
@@ -28,7 +28,7 @@ test('Should calc 2nd hash of 1-length branch', function () {
   expect(hash).toEqual('0x3e92e0db88d6afea9edc4eedf62fffa4d92bcdfc310dccbe943747fe8302e871');
 });
 
-test('Should calc hash of 2-length branch', function () {
+test('Should calc hash of 2-length branch', () => {
   const hash = flexCalcBranchHash({
     leaf: '0x1111111111111111111111111111111111111111111111111111111111111111',
     branch: [
@@ -39,7 +39,7 @@ test('Should calc hash of 2-length branch', function () {
   expect(hash).toEqual('0x87fbd8dad686d9536b2ef65757c3415df1b7a4664deb34eda3d91234936eb5fe');
 });
 
-test('Should calc hash of 8-length branch', function () {
+test('Should calc hash of 8-length branch', () => {
   const hash = flexCalcBranchHash({
     leaf: '0x1111111111111111111111111111111111111111111111111111111111111111',
     branch: [
