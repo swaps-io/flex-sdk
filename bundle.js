@@ -11,11 +11,12 @@ const sharedConfig = {
   sourcemap: 'external',
 };
 
-build({
-  ...sharedConfig,
-  platform: 'node',
-  outfile: './dist/cjs/index.js',
-});
+// TODO: Fix `Top-level await is currently not supported with the "cjs" output format`
+// build({
+//   ...sharedConfig,
+//   platform: 'node',
+//   outfile: './dist/cjs/index.js',
+// });
 
 build({
   ...sharedConfig,
