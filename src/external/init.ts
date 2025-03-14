@@ -11,7 +11,7 @@ export function flexReady(): boolean {
 }
 
 async function tryInitExternal(): Promise<void> {
-  if (process?.env?.FLASH_SDK_SKIP_DEFAULT_INIT_EXTERNAL) {
+  if (process?.env?.FLEX_SDK_SKIP_DEFAULT_INIT_EXTERNAL) {
     return;
   }
 

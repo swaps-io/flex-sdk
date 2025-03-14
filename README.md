@@ -53,5 +53,5 @@ async function example() {
 
 > [!NOTE]
 > Alternatively, `flexSetExternal` can be called with `FlexExternal` object initialized manually. Setting
-> `process.env.FLASH_SDK_SKIP_DEFAULT_INIT_EXTERNAL` along to skip the default initialization attempt should be
+> `process.env.FLEX_SDK_SKIP_DEFAULT_INIT_EXTERNAL` along to skip the default initialization attempt should be
 > considered in this case.
