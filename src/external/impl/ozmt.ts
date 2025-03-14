@@ -6,7 +6,7 @@ export type FlexOzmtExternal = Pick<FlexExternal, 'createTree' | 'processTree' |
 
 export async function flexInitOzmtExternal(): Promise<FlexOzmtExternal> {
   const { SimpleMerkleTree } = await import('@openzeppelin/merkle-tree');
-  const { processProof: ozmtProcessProof } = await import('@openzeppelin/merkle-tree/dist/core');
+  const { processProof: ozmtProcessProof } = await import('@openzeppelin/merkle-tree/dist/core.js');
 
   function smt(tree: Tree): asserts tree is SimpleMerkleTree {
     if (!(tree instanceof SimpleMerkleTree)) {

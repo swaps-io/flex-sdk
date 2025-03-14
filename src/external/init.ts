@@ -1,8 +1,20 @@
 import { flexInitDefaultExternal } from './default';
-import { setExternal } from './inner';
+import { hasExternal, setExternal } from './inner';
 import { FlexExternal } from './types';
 
+export function flexSetExternal(external: FlexExternal): void {
+  setExternal(external);
+}
+
+export function flexReady(): boolean {
+  return hasExternal();
+}
+
 async function tryInitExternal(): Promise<void> {
+  if (process?.env?.FLASH_SDK_SKIP_DEFAULT_INIT_EXTERNAL) {
+    return;
+  }
+
   try {
     setExternal(await flexInitDefaultExternal());
   } catch {
@@ -10,8 +22,9 @@ async function tryInitExternal(): Promise<void> {
   }
 }
 
-await tryInitExternal();
+export const flexInit = tryInitExternal();
 
-export function flexSetExternal(external: FlexExternal): void {
-  setExternal(external);
-}
+// Top-level await is not supported for CJS target.
+// For this reason `flexInit` must be manually awaited for CJS.
+// eslint-disable-next-line no-unused-labels
+CJS_DROP: await flexInit;

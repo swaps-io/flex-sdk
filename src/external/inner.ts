@@ -14,3 +14,7 @@ export function getExternal(): FlexExternal {
   }
   return external;
 }
+
+export function hasExternal(): boolean {
+  return !!external;
+}
