@@ -1,13 +1,13 @@
-import { AsHexValue, Hex } from '../external/inner';
+import { FlexHex, FlexToHexValue } from '../core';
 import { flexCalcSendHash } from '../send';
 
 import { FlexSendTokenFloatData } from './data';
 
 export interface FlexCalcSendTokenFloatHashParams {
-  domain: AsHexValue;
+  domain: FlexToHexValue;
   data: Pick<FlexSendTokenFloatData, 'sendData'>;
 }
 
-export function flexCalcSendTokenFloatHash(params: FlexCalcSendTokenFloatHashParams): Hex {
+export function flexCalcSendTokenFloatHash(params: FlexCalcSendTokenFloatHashParams): FlexHex {
   return flexCalcSendHash({ domain: params.domain, data: params.data.sendData });
 }

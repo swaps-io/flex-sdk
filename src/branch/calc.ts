@@ -1,16 +1,14 @@
-import { Hex, getExternal } from '../external/inner';
+import { FlexHex } from '../core';
 import { FlexTree } from '../tree';
 
 import { FlexBranch } from './data';
 
 export interface FlexCalcBranchParams {
   tree: FlexTree;
-  leaf: Hex;
+  leaf: FlexHex;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function flexCalcBranch({ tree, leaf }: FlexCalcBranchParams): FlexBranch {
-  const e = getExternal();
-
-  const proof = e.createProof(tree.inner, leaf);
-  return proof;
+  return []; // TODO - implement branch calc
 }

@@ -1,9 +1,7 @@
-import { Tree } from '../external/inner';
-
 export class FlexTree {
-  public readonly inner: Tree;
+  public readonly inner: undefined;
 
-  public constructor(inner: Tree) {
-    this.inner = inner;
+  public constructor() {
+    // TODO - implement tree data
   }
 }

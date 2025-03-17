@@ -1,11 +1,9 @@
-import { AsHexValue, Hex, getExternal } from '../external/inner';
+import { FlexHex, FlexToHexValue, flexToHex } from '../core';
 
 export interface FlexEncodeSettleProofData1Params {
-  eventSignature: AsHexValue;
+  eventSignature: FlexToHexValue;
 }
 
-export function flexEncodeSettleProofData1(params: FlexEncodeSettleProofData1Params): Hex {
-  const e = getExternal();
-
-  return e.asHex(params.eventSignature, 32);
+export function flexEncodeSettleProofData1(params: FlexEncodeSettleProofData1Params): FlexHex {
+  return flexToHex(params.eventSignature, 32);
 }

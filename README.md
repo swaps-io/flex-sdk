@@ -2,6 +2,7 @@
 
 SDK for interaction with Flex protocol [contracts](https://github.com/swaps-io/flex-contracts). See:
 
+- [usage examples](#usage-examples) for a good starting point for working with the SDK
 - [installation](#installation) for instructions on how to setup SDK in a project
 - [modules](./modules.html) for all available SDK classes/types/etc
 
@@ -9,49 +10,40 @@ SDK for interaction with Flex protocol [contracts](https://github.com/swaps-io/f
 
 ### Installation
 
-The SDK installation process assumes that [Node.js](https://nodejs.org/en) (version 22 is recommended) is installed on
-machine and a project where SDK is planned to be integrated is already created.
+The SDK installation process assumes that the project to integrate the SDK into is already initialized.
 
 1. Install `@swaps-io/flex-sdk` as a package dependency of the project:
    - `npm install @swaps-io/flex-sdk`
-   - `yarn add @swaps-io/flex-sdk`
-2. Install [peer dependencies](#peer-dependencies) of SDK according to the needs of the project
-
-Both ESM and CJS targets are supported. However, CJS requires [additional steps](#cjs-support).
-
-### Peer Dependencies
-
-By default SDK expects installed peer dependencies as listed in the table below.
-
-| Dependency                  | Version |
-| --------------------------- |:-------:|
-| `viem`                      |  v2+    |
-| `@openzeppelin/merkle-tree` |  v1+    |
+   - or `yarn add @swaps-io/flex-sdk`
+   - or using other package manager of choice
+2. Provide `@noble/hashes` peer dependency for SDK by installing:
+   - [`viem`](https://www.npmjs.com/package/viem) package (relies on)
+   - or [`ethers`](https://www.npmjs.com/package/ethers) package (relies on)
+   - or other package that relies on `@noble/hashes`
+   - or [`@noble/hashes`](https://www.npmjs.com/package/@noble/hashes) itself
 
 > [!NOTE]
 >
-> Flex SDK treats the default dependencies as _optional_. It's possible to configure SDK to use custom set of
-> dependencies (e.g. `ethers` instead of `viem`) by providing `FlexExternal` instance to `flexSetExternal`.
+> Both ESM and CJS module systems are supported by the SDK.
 
-### CJS Support
+### Usage Examples
 
-Flex SDK is bundled for both ESM and CJS targets. New project are preferred to use ESM. If CJS is needed, Flex SDK
-initialization must be _ensured to finish_ before any SDK function usage due to CJS's top-level `await` limitations.
+#### _Encode receive native data_
 
 ```ts
-import { flexInit, flexCalcTree } from '@swaps-io/flex-sdk';
+import { flexEncodeReceiveNativeData } from '@swaps-io/flex-sdk';
 
-async function example() {
-  // Only projects targeting CJS should care about awaiting init.
-  // For ESM targets this promise is already resolved upon import.
-  await flexInit;
+test('Should be working example', async () => {
+  const now = (): bigint => BigInt(new Date().getTime()) / 1000n; // In seconds
 
-  // Now Flex SDK functions can be safely used in CJS code
-  const tree = flexCalcTree(...);
-}
+  const data = flexEncodeReceiveNativeData({
+    sender: '0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef',
+    receiver: '0xc001c0dec001c0dec001c0dec001c0dec001c0de',
+    receiverContract: true,
+    amount: 12_300000000_000000000n, // 12.3 (18 decimals)
+    deadline: now() + 3n * 60n, // In seconds
+    nonce: 123n,
+  });
+  console.log(`Receive native data: ${JSON.stringify(data)}`);
+});
 ```
-
-> [!NOTE]
-> Alternatively, `flexSetExternal` can be called with `FlexExternal` object initialized manually. Setting
-> `process.env.FLEX_SDK_SKIP_DEFAULT_INIT_EXTERNAL` along to skip the default initialization attempt should be
-> considered in this case.

@@ -1,21 +1,21 @@
-import { AsHexValue, Hex } from '../external/inner';
+import { FlexHex, FlexToHexValue } from '../core';
 import { flexCalcReceiveHash, flexEncodeReceiveData0, flexEncodeReceiveData1 } from '../receive';
 import { flexEncodeReceiveFromData0, flexEncodeReceiveFromData1 } from '../receiveFrom';
 
 export interface FlexEncodeReceiveNativeDataParams {
-  sender: AsHexValue;
-  receiver: AsHexValue;
+  sender: FlexToHexValue;
+  receiver: FlexToHexValue;
   receiverContract: boolean;
   receiverNoMessageWrap?: boolean;
   receiverNoRetryAsContract?: boolean;
-  amount: AsHexValue;
-  deadline: AsHexValue;
-  nonce: AsHexValue;
+  amount: FlexToHexValue;
+  deadline: FlexToHexValue;
+  nonce: FlexToHexValue;
 }
 
 export interface FlexReceiveNativeData {
-  receiveData: [Hex, Hex];
-  receiveFromData: [Hex, Hex];
+  receiveData: [FlexHex, FlexHex];
+  receiveFromData: [FlexHex, FlexHex];
 }
 
 export function flexEncodeReceiveNativeData(params: FlexEncodeReceiveNativeDataParams): FlexReceiveNativeData {

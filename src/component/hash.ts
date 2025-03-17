@@ -1,19 +1,17 @@
-import { AsHexValue, Hex, getExternal } from '../external/inner';
+import { FlexHex, FlexToHexValue, flexCalcHash, flexConcatHex, flexToHex } from '../core';
 
 import { flexAssignComponentDomain } from './domain';
 
 export interface FlexCalcComponentHashParams {
-  domain: AsHexValue;
-  data: readonly [AsHexValue, ...AsHexValue[]];
+  domain: FlexToHexValue;
+  data: readonly [FlexToHexValue, ...FlexToHexValue[]];
 }
 
-export function flexCalcComponentHash(params: FlexCalcComponentHashParams): Hex {
-  const e = getExternal();
-
-  return e.keccak256(
-    e.concatHex([
+export function flexCalcComponentHash(params: FlexCalcComponentHashParams): FlexHex {
+  return flexCalcHash(
+    flexConcatHex([
       flexAssignComponentDomain({ domain: params.domain, data: params.data[0] }),
-      ...params.data.slice(1).map((d) => e.asHex(d, 32)),
+      ...params.data.slice(1).map((d) => flexToHex(d, 32)),
     ]),
   );
 }

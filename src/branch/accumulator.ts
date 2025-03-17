@@ -1,11 +1,11 @@
-import { Hex, getExternal } from '../external/inner';
+import { FlexHex, flexConcatHex, flexToHex } from '../core';
 
 import { FlexBranch } from './data';
 
 export interface FlexCalcAccumulatorBranchParams {
   branch: Readonly<FlexBranch>;
-  hashBefore: Hex;
-  hashesAfter: readonly Hex[];
+  hashBefore: FlexHex;
+  hashesAfter: readonly FlexHex[];
 }
 
 export function flexCalcAccumulatorBranch({
@@ -13,10 +13,8 @@ export function flexCalcAccumulatorBranch({
   hashBefore,
   hashesAfter,
 }: FlexCalcAccumulatorBranchParams): FlexBranch {
-  const e = getExternal();
-
   const offset = 1 + hashesAfter.length;
-  const header = e.concatHex([e.asHex(hashBefore, 20), e.asHex(offset, 12)]);
-  const accumulatorBranch: Hex[] = [header, ...hashesAfter, ...branch];
+  const header = flexConcatHex([flexToHex(hashBefore, 20), flexToHex(offset, 12)]);
+  const accumulatorBranch: FlexHex[] = [header, ...hashesAfter, ...branch];
   return accumulatorBranch;
 }

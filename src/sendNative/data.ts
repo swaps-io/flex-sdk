@@ -1,17 +1,17 @@
-import { AsHexValue, Hex } from '../external/inner';
+import { FlexHex, FlexToHexValue } from '../core';
 import { flexEncodeSendData0, flexEncodeSendData1, flexEncodeSendData2 } from '../send';
 
 export interface FlexEncodeSendNativeDataParams {
-  sender: AsHexValue;
-  receiver: AsHexValue;
-  amount: AsHexValue;
-  start: AsHexValue;
-  duration: AsHexValue;
-  group: AsHexValue;
+  sender: FlexToHexValue;
+  receiver: FlexToHexValue;
+  amount: FlexToHexValue;
+  start: FlexToHexValue;
+  duration: FlexToHexValue;
+  group: FlexToHexValue;
 }
 
 export interface FlexSendNativeData {
-  sendData: [Hex, Hex, Hex];
+  sendData: [FlexHex, FlexHex, FlexHex];
 }
 
 export function flexEncodeSendNativeData(params: FlexEncodeSendNativeDataParams): FlexSendNativeData {

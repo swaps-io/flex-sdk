@@ -1,11 +1,13 @@
 import { flexCalcComponentHash } from '../component';
-import { AsHexValue, Hex } from '../external/inner';
+import { FlexHex, FlexToHexValue } from '../core';
 
 export interface FlexCalcSendHashParams {
-  domain: AsHexValue;
-  data: [AsHexValue, AsHexValue, AsHexValue] | [AsHexValue, AsHexValue, AsHexValue, AsHexValue];
+  domain: FlexToHexValue;
+  data:
+    | [FlexToHexValue, FlexToHexValue, FlexToHexValue]
+    | [FlexToHexValue, FlexToHexValue, FlexToHexValue, FlexToHexValue];
 }
 
-export function flexCalcSendHash(params: FlexCalcSendHashParams): Hex {
+export function flexCalcSendHash(params: FlexCalcSendHashParams): FlexHex {
   return flexCalcComponentHash(params);
 }

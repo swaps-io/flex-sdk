@@ -1,19 +1,17 @@
-import { AsHexValue, Hex, getExternal } from '../external/inner';
+import { FlexHex, FlexToHexValue, flexConcatHex, flexToHex } from '../core';
 
 export interface FlexEncodeSendData1Params {
-  start: AsHexValue;
-  duration: AsHexValue;
-  group: AsHexValue;
-  receiver: AsHexValue;
+  start: FlexToHexValue;
+  duration: FlexToHexValue;
+  group: FlexToHexValue;
+  receiver: FlexToHexValue;
 }
 
-export function flexEncodeSendData1(params: FlexEncodeSendData1Params): Hex {
-  const e = getExternal();
-
-  return e.concatHex([
-    e.asHex(params.start, 6),
-    e.asHex(params.duration, 4),
-    e.asHex(params.group, 2),
-    e.asHex(params.receiver, 20),
+export function flexEncodeSendData1(params: FlexEncodeSendData1Params): FlexHex {
+  return flexConcatHex([
+    flexToHex(params.start, 6),
+    flexToHex(params.duration, 4),
+    flexToHex(params.group, 2),
+    flexToHex(params.receiver, 20),
   ]);
 }

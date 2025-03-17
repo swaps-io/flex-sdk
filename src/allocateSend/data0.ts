@@ -1,12 +1,15 @@
-import { AsHexValue, Hex, getExternal } from '../external/inner';
+import { FlexHex, FlexToHexValue, flexConcatHex, flexToHex } from '../core';
 
 export interface FlexEncodeAllocateSendData0Params {
-  sender: AsHexValue;
-  startGroup: AsHexValue;
-  totalBuckets: AsHexValue;
+  sender: FlexToHexValue;
+  startGroup: FlexToHexValue;
+  totalBuckets: FlexToHexValue;
 }
 
-export function flexEncodeAllocateSendData0(params: FlexEncodeAllocateSendData0Params): Hex {
-  const e = getExternal();
-  return e.concatHex([e.asHex(params.totalBuckets, 6), e.asHex(params.startGroup, 6), e.asHex(params.sender, 20)]);
+export function flexEncodeAllocateSendData0(params: FlexEncodeAllocateSendData0Params): FlexHex {
+  return flexConcatHex([
+    flexToHex(params.totalBuckets, 6),
+    flexToHex(params.startGroup, 6),
+    flexToHex(params.sender, 20),
+  ]);
 }

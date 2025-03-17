@@ -1,20 +1,20 @@
-import { AsHexValue, Hex } from '../external/inner';
+import { FlexHex, FlexToHexValue } from '../core';
 import { flexEncodeSendData0, flexEncodeSendData1, flexEncodeSendData3 } from '../send';
 import { flexEncodeSendFloatData2 } from '../sendFloat';
 
 export interface FlexEncodeSendTokenFloatDataParams {
-  sender: AsHexValue;
-  receiver: AsHexValue;
-  token: AsHexValue;
-  amount: AsHexValue;
-  start: AsHexValue;
-  duration: AsHexValue;
-  group: AsHexValue;
+  sender: FlexToHexValue;
+  receiver: FlexToHexValue;
+  token: FlexToHexValue;
+  amount: FlexToHexValue;
+  start: FlexToHexValue;
+  duration: FlexToHexValue;
+  group: FlexToHexValue;
   skipAmountEmit?: boolean;
 }
 
 export interface FlexSendTokenFloatData {
-  sendData: [Hex, Hex, Hex, Hex];
+  sendData: [FlexHex, FlexHex, FlexHex, FlexHex];
 }
 
 export function flexEncodeSendTokenFloatData(params: FlexEncodeSendTokenFloatDataParams): FlexSendTokenFloatData {

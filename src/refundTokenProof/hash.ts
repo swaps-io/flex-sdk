@@ -1,8 +1,8 @@
-import { Hex } from '../external/inner';
+import { FlexHex } from '../core';
 import { FlexCalcSettleTokenProofHashParams, flexCalcSettleTokenProofHash } from '../settleTokenProof';
 
 export type FlexCalcRefundTokenProofHashParams = FlexCalcSettleTokenProofHashParams;
 
-export function flexCalcRefundTokenProofHash(params: FlexCalcRefundTokenProofHashParams): Hex {
+export function flexCalcRefundTokenProofHash(params: FlexCalcRefundTokenProofHashParams): FlexHex {
   return flexCalcSettleTokenProofHash(params);
 }

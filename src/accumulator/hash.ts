@@ -1,15 +1,13 @@
-import { AsHexValue, Hex, getExternal } from '../external/inner';
+import { FlexHex, FlexToHexValue, flexCalcHash, flexConcatHex, flexSliceHex, flexToHex } from '../core';
 
 export interface FlexCalcAccumulatorHashParams {
-  hashBefore: AsHexValue;
-  hashToAdd: AsHexValue;
+  hashBefore: FlexToHexValue;
+  hashToAdd: FlexToHexValue;
 }
 
-export function flexCalcAccumulatorHash(params: FlexCalcAccumulatorHashParams): Hex {
-  const e = getExternal();
-
-  return e.sliceHex(
-    e.keccak256(e.concatHex([e.asHex(params.hashBefore, 20), e.asHex(0, 12), e.asHex(params.hashToAdd, 32)])),
+export function flexCalcAccumulatorHash(params: FlexCalcAccumulatorHashParams): FlexHex {
+  return flexSliceHex(
+    flexCalcHash(flexConcatHex([flexToHex(params.hashBefore, 20), flexToHex(0, 12), flexToHex(params.hashToAdd, 32)])),
     0,
     20,
   );

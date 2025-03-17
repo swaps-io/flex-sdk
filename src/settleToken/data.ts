@@ -1,4 +1,4 @@
-import { AsHexValue, Hex } from '../external/inner';
+import { FlexHex, FlexToHexValue } from '../core';
 import {
   flexCalcReceiveHash,
   flexEncodeReceiveData0,
@@ -8,22 +8,22 @@ import {
 import { flexEncodeSettleData0, flexEncodeSettleData1, flexEncodeSettleData2 } from '../settle';
 
 export interface FlexEncodeSettleTokenDataParams {
-  receiver: AsHexValue;
+  receiver: FlexToHexValue;
   receiverContract: boolean;
   receiverNoMessageWrap?: boolean;
   receiverNoRetryAsContract?: boolean;
-  token: AsHexValue;
-  amount: AsHexValue;
-  deadline: AsHexValue;
-  nonce: AsHexValue;
-  keyHash: AsHexValue;
+  token: FlexToHexValue;
+  amount: FlexToHexValue;
+  deadline: FlexToHexValue;
+  nonce: FlexToHexValue;
+  keyHash: FlexToHexValue;
   confirm: boolean;
-  settleReceiver: AsHexValue;
+  settleReceiver: FlexToHexValue;
 }
 
 export interface FlexSettleTokenData {
-  receiveData: [Hex, Hex, Hex];
-  settleData: [Hex, Hex, Hex];
+  receiveData: [FlexHex, FlexHex, FlexHex];
+  settleData: [FlexHex, FlexHex, FlexHex];
 }
 
 export function flexEncodeSettleTokenData(params: FlexEncodeSettleTokenDataParams): FlexSettleTokenData {

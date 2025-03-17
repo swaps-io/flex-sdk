@@ -1,6 +1,4 @@
-import { Hex } from 'viem';
-
-import { flexCalcBranch, flexCalcBranchHash, flexCalcTree, flexCalcTreeHash } from '../src';
+import { FlexHex, flexCalcBranch, flexCalcBranchHash, flexCalcTree, flexCalcTreeHash } from '../src';
 
 test('Should not calc branch of tree with 1 mismatching leaf', () => {
   expect(() => {
@@ -149,7 +147,7 @@ test('Should calc branch of tree with 7 leaves', () => {
 });
 
 test('Should calc every branch of tree with 11 leaves', () => {
-  const leaves: Hex[] = [
+  const leaves: FlexHex[] = [
     '0x1111111111111111111111111111111111111111111111111111111111111111',
     '0x2222222222222222222222222222222222222222222222222222222222222222',
     '0x3333333333333333333333333333333333333333333333333333333333333333',

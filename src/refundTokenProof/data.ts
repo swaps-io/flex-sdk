@@ -1,4 +1,4 @@
-import { AsHexValue } from '../external/inner';
+import { FlexToHexValue } from '../core';
 import {
   FlexEncodeSettleTokenProofDataParams,
   FlexSettleTokenProofData,
@@ -7,7 +7,7 @@ import {
 
 export interface FlexEncodeRefundTokenProofDataParams
   extends Omit<FlexEncodeSettleTokenProofDataParams, 'confirm' | 'settleReceiver'> {
-  refundReceiver: AsHexValue;
+  refundReceiver: FlexToHexValue;
 }
 
 export type FlexRefundTokenProofData = FlexSettleTokenProofData;

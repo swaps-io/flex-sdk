@@ -1,12 +1,10 @@
-import { AsHexValue, Hex, getExternal } from '../external/inner';
+import { FlexHex, FlexToHexValue, flexConcatHex, flexToHex } from '../core';
 
 export interface FlexEncodeSendSaveStateBucketParams {
-  saver: AsHexValue;
-  slot: AsHexValue;
+  saver: FlexToHexValue;
+  slot: FlexToHexValue;
 }
 
-export function flexEncodeSendSaveStateBucket(params: FlexEncodeSendSaveStateBucketParams): Hex {
-  const e = getExternal();
-
-  return e.concatHex([e.asHex(params.saver, 20), e.asHex(params.slot, 12)]);
+export function flexEncodeSendSaveStateBucket(params: FlexEncodeSendSaveStateBucketParams): FlexHex {
+  return flexConcatHex([flexToHex(params.saver, 20), flexToHex(params.slot, 12)]);
 }

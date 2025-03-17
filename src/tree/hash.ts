@@ -1,4 +1,4 @@
-import { Hex, getExternal } from '../external/inner';
+import { FlexHex } from '../core';
 
 import { FlexTree } from './data';
 
@@ -6,8 +6,7 @@ export interface FlexCalcTreeHashParams {
   tree: FlexTree;
 }
 
-export function flexCalcTreeHash({ tree }: FlexCalcTreeHashParams): Hex {
-  const e = getExternal();
-
-  return e.processTree(tree.inner);
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function flexCalcTreeHash({ tree }: FlexCalcTreeHashParams): FlexHex {
+  return '0x'; // TODO - implement tree hash calc
 }

@@ -1,11 +1,9 @@
-import { AsHexValue, Hex, getExternal } from '../external/inner';
+import { FlexHex, FlexToHexValue, flexConcatHex, flexToHex } from '../core';
 
 export interface FlexEncodeReceiveFromData0Params {
-  sender: AsHexValue;
+  sender: FlexToHexValue;
 }
 
-export function flexEncodeReceiveFromData0(params: FlexEncodeReceiveFromData0Params): Hex {
-  const e = getExternal();
-
-  return e.concatHex([e.asHex(0, 12), e.asHex(params.sender, 20)]);
+export function flexEncodeReceiveFromData0(params: FlexEncodeReceiveFromData0Params): FlexHex {
+  return flexConcatHex([flexToHex(0, 12), flexToHex(params.sender, 20)]);
 }

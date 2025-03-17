@@ -1,10 +1,9 @@
-import { AsHexValue, Hex, getExternal } from '../external/inner';
+import { FlexHex, FlexToHexValue, flexToHex } from '../core';
 
 export interface FlexEncodeSettleData1Params {
-  keyHash: AsHexValue;
+  keyHash: FlexToHexValue;
 }
 
-export function flexEncodeSettleData1(params: FlexEncodeSettleData1Params): Hex {
-  const e = getExternal();
-  return e.asHex(params.keyHash, 32);
+export function flexEncodeSettleData1(params: FlexEncodeSettleData1Params): FlexHex {
+  return flexToHex(params.keyHash, 32);
 }

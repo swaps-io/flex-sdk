@@ -50,7 +50,7 @@
     "prepack": "yarn build"
   },
   "devDependencies": {
-    "@openzeppelin/merkle-tree": "1.0.8",
+    "@noble/hashes": "^1.7.1",
     "@trivago/prettier-plugin-sort-imports": "5.2.2",
     "@types/jest": "29.5.14",
     "@typescript-eslint/eslint-plugin": "8.26.1",
@@ -62,21 +62,11 @@
     "prettier": "3.5.3",
     "ts-jest": "29.2.6",
     "ts-node": "10.9.2",
-    "typedoc": "0.27.9",
-    "typescript": "5.8.2",
-    "viem": "2.23.10"
+    "typedoc": "0.28.0",
+    "typescript": "5.8.2"
   },
   "peerDependencies": {
-    "@openzeppelin/merkle-tree": ">=1 <2",
-    "viem": ">=2 <3"
-  },
-  "peerDependenciesMeta": {
-    "@openzeppelin/merkle-tree": {
-      "optional": true
-    },
-    "viem": {
-      "optional": true
-    }
+    "@noble/hashes": ">=1 <2"
   },
   "packageManager": "yarn@4.7.0"
 }

@@ -1,4 +1,4 @@
-import { AsHexValue, Hex } from '../external/inner';
+import { FlexHex, FlexToHexValue } from '../core';
 import {
   flexCalcReceiveHash,
   flexEncodeReceiveData0,
@@ -8,21 +8,21 @@ import {
 import { flexEncodeReceiveFromData0, flexEncodeReceiveFromData1 } from '../receiveFrom';
 
 export interface FlexEncodeReceiveTokenFromDataParams {
-  sender: AsHexValue;
+  sender: FlexToHexValue;
   senderContract: boolean;
   senderNoMessageWrap?: boolean;
   senderNoRetryAsContract?: boolean;
-  receiver: AsHexValue;
-  token: AsHexValue;
-  amount: AsHexValue;
-  deadline: AsHexValue;
-  nonce: AsHexValue;
+  receiver: FlexToHexValue;
+  token: FlexToHexValue;
+  amount: FlexToHexValue;
+  deadline: FlexToHexValue;
+  nonce: FlexToHexValue;
 }
 
 export interface FlexReceiveTokenFromData {
-  receiveData: [Hex, Hex, Hex];
-  receiveFromData: [Hex, Hex];
-  receivePackData: [Hex];
+  receiveData: [FlexHex, FlexHex, FlexHex];
+  receiveFromData: [FlexHex, FlexHex];
+  receivePackData: [FlexHex];
 }
 
 export function flexEncodeReceiveTokenFromData(params: FlexEncodeReceiveTokenFromDataParams): FlexReceiveTokenFromData {

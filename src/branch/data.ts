@@ -1,3 +1,3 @@
-import { Hex } from '../external/inner';
+import { FlexHex } from '../core';
 
-export type FlexBranch = Hex[];
+export type FlexBranch = FlexHex[];

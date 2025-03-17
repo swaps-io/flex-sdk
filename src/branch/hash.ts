@@ -1,14 +1,18 @@
-import { Hex, getExternal } from '../external/inner';
+import { FlexHex, flexCalcHash, flexCompareHex, flexConcatHex } from '../core';
 
 import { FlexBranch } from './data';
 
 export interface FlexCalcBranchHashParams {
-  leaf: Hex;
+  leaf: FlexHex;
   branch: Readonly<FlexBranch>;
 }
 
-export function flexCalcBranchHash({ leaf, branch }: FlexCalcBranchHashParams): Hex {
-  const e = getExternal();
-  const hash = e.processProof(leaf, branch);
+export function flexCalcBranchHash({ leaf, branch }: FlexCalcBranchHashParams): FlexHex {
+  let hash = leaf;
+  for (const node of branch) {
+    const nodes = [hash, node].sort(flexCompareHex);
+    const data = flexConcatHex(nodes);
+    hash = flexCalcHash(data);
+  }
   return hash;
 }

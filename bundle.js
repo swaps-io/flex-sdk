@@ -15,9 +15,6 @@ build({
   ...sharedConfig,
   platform: 'node',
   outfile: './dist/cjs/index.js',
-  dropLabels: [
-    'CJS_DROP',
-  ],
 });
 
 build({

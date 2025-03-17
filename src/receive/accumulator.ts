@@ -1,22 +1,23 @@
 import { flexCalcAccumulatorHash } from '../accumulator';
-import { AsHexValue, Hex, getExternal } from '../external/inner';
+import { FlexHex, FlexToHexValue, flexToHex } from '../core';
 
 export interface FlexEncodeReceiveAccumulatorHashParams {
-  orderHash: AsHexValue;
+  orderHash: FlexToHexValue;
 }
 
-export function flexEncodeReceiveAccumulatorHash({ orderHash }: FlexEncodeReceiveAccumulatorHashParams): Hex {
-  const e = getExternal();
-
-  return e.asHex(orderHash, 32);
+export function flexEncodeReceiveAccumulatorHash({ orderHash }: FlexEncodeReceiveAccumulatorHashParams): FlexHex {
+  return flexToHex(orderHash, 32);
 }
 
 export interface FlexCalcReceiveAccumulatorHashParams {
-  hashBefore: AsHexValue;
-  orderHash: AsHexValue;
+  hashBefore: FlexToHexValue;
+  orderHash: FlexToHexValue;
 }
 
-export function flexCalcReceiveAccumulatorHash({ hashBefore, orderHash }: FlexCalcReceiveAccumulatorHashParams): Hex {
+export function flexCalcReceiveAccumulatorHash({
+  hashBefore,
+  orderHash,
+}: FlexCalcReceiveAccumulatorHashParams): FlexHex {
   const hashToAdd = flexEncodeReceiveAccumulatorHash({ orderHash });
   return flexCalcAccumulatorHash({ hashBefore, hashToAdd });
 }

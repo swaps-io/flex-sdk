@@ -1,13 +1,11 @@
-import { AsHexValue, Hex, getExternal } from '../external/inner';
+import { FlexHex, FlexToHexValue, flexConcatHex, flexToHex } from '../core';
 
 export interface FlexEncodeSaveSendDataParams {
-  slot: AsHexValue;
-  group: AsHexValue;
-  sender: AsHexValue;
+  slot: FlexToHexValue;
+  group: FlexToHexValue;
+  sender: FlexToHexValue;
 }
 
-export function flexEncodeSaveSendData(params: FlexEncodeSaveSendDataParams): Hex {
-  const e = getExternal();
-
-  return e.concatHex([e.asHex(params.slot, 6), e.asHex(params.group, 6), e.asHex(params.sender, 20)]);
+export function flexEncodeSaveSendData(params: FlexEncodeSaveSendDataParams): FlexHex {
+  return flexConcatHex([flexToHex(params.slot, 6), flexToHex(params.group, 6), flexToHex(params.sender, 20)]);
 }

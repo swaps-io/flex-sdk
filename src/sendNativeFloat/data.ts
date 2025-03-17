@@ -1,19 +1,19 @@
-import { AsHexValue, Hex } from '../external/inner';
+import { FlexHex, FlexToHexValue } from '../core';
 import { flexEncodeSendData0, flexEncodeSendData1 } from '../send';
 import { flexEncodeSendFloatData2 } from '../sendFloat';
 
 export interface FlexEncodeSendNativeFloatDataParams {
-  sender: AsHexValue;
-  receiver: AsHexValue;
-  amount: AsHexValue;
-  start: AsHexValue;
-  duration: AsHexValue;
-  group: AsHexValue;
+  sender: FlexToHexValue;
+  receiver: FlexToHexValue;
+  amount: FlexToHexValue;
+  start: FlexToHexValue;
+  duration: FlexToHexValue;
+  group: FlexToHexValue;
   skipAmountEmit?: boolean;
 }
 
 export interface FlexSendNativeFloatData {
-  sendData: [Hex, Hex, Hex];
+  sendData: [FlexHex, FlexHex, FlexHex];
 }
 
 export function flexEncodeSendNativeFloatData(params: FlexEncodeSendNativeFloatDataParams): FlexSendNativeFloatData {

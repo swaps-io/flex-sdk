@@ -1,8 +1,8 @@
-import { Hex } from '../external/inner';
+import { FlexHex } from '../core';
 import { FlexCalcSettleNativeHashParams, flexCalcSettleNativeHash } from '../settleNative';
 
 export type FlexCalcRefundNativeHashParams = FlexCalcSettleNativeHashParams;
 
-export function flexCalcRefundNativeHash(params: FlexCalcRefundNativeHashParams): Hex {
+export function flexCalcRefundNativeHash(params: FlexCalcRefundNativeHashParams): FlexHex {
   return flexCalcSettleNativeHash(params);
 }

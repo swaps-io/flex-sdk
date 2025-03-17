@@ -1,11 +1,9 @@
-import { AsHexValue, Hex, getExternal } from '../external/inner';
+import { FlexHex, FlexToHexValue, flexCalcHash, flexConcatHex, flexToHex } from '../core';
 
 export interface FlexCalcReceiveHashParams {
-  data: [AsHexValue, AsHexValue] | [AsHexValue, AsHexValue, AsHexValue];
+  data: [FlexToHexValue, FlexToHexValue] | [FlexToHexValue, FlexToHexValue, FlexToHexValue];
 }
 
-export function flexCalcReceiveHash(params: FlexCalcReceiveHashParams): Hex {
-  const e = getExternal();
-
-  return e.keccak256(e.concatHex(params.data.map((d) => e.asHex(d, 32))));
+export function flexCalcReceiveHash(params: FlexCalcReceiveHashParams): FlexHex {
+  return flexCalcHash(flexConcatHex(params.data.map((d) => flexToHex(d, 32))));
 }

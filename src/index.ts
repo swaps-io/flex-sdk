@@ -8,7 +8,7 @@ export * from './confirmNativeProof';
 export * from './confirmToken';
 export * from './confirmTokenProof';
 export * from './constants';
-export * from './external';
+export * from './core';
 export * from './flags';
 export * from './receive';
 export * from './receiveFrom';
