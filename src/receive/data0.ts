@@ -1,5 +1,5 @@
 import { FLEX_MAX_RECEIVE_DEADLINE } from '../constants';
-import { FlexHex, FlexToHexValue, flexConcatHex, flexToHex } from '../core';
+import { FlexError, FlexHex, FlexToHexValue, flexConcatHex, flexToHex } from '../core';
 import { flexPackFlags } from '../flags';
 
 export interface FlexEncodeReceiveData0Params {
@@ -14,7 +14,7 @@ export interface FlexEncodeReceiveData0Params {
 export function flexEncodeReceiveData0(params: FlexEncodeReceiveData0Params): FlexHex {
   const deadline = BigInt(flexToHex(params.deadline, 4));
   if (deadline > FLEX_MAX_RECEIVE_DEADLINE) {
-    throw new Error('Flex receive deadline exceeds max value');
+    throw new FlexError('Flex receive deadline exceeds max value');
   }
 
   return flexConcatHex([

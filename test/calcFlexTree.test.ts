@@ -1,11 +1,11 @@
-import { flexCalcTree } from '../src';
+import { flexCalcTree, FlexError } from '../src';
 
 test('Should not calc tree from 0 leaves', () => {
   expect(() => {
     flexCalcTree({
       leaves: [],
     });
-  }).toThrow(Error);
+  }).toThrow(FlexError);
 });
 
 test('Should calc tree from 1 leaf', () => {
@@ -51,7 +51,7 @@ test('Should not calc tree from 2 leaves with duplicate', () => {
         '0x1111111111111111111111111111111111111111111111111111111111111111',
       ],
     });
-  }).toThrow(Error);
+  }).toThrow(FlexError);
 });
 
 test('Should calc tree from 3 leaves', () => {
@@ -96,7 +96,7 @@ test('Should not calc tree from 3 leaves with duplicate', () => {
         '0x1111111111111111111111111111111111111111111111111111111111111111',
       ],
     });
-  }).toThrow(Error);
+  }).toThrow(FlexError);
 });
 
 test('Should calc tree from 4 leaves', () => {

@@ -1,4 +1,4 @@
-import { FlexHex, flexCalcBranch, flexCalcBranchHash, flexCalcTree, flexCalcTreeHash } from '../src';
+import { FlexError, FlexHex, flexCalcBranch, flexCalcBranchHash, flexCalcTree, flexCalcTreeHash } from '../src';
 
 test('Should not calc branch of tree with 1 mismatching leaf', () => {
   expect(() => {
@@ -8,7 +8,7 @@ test('Should not calc branch of tree with 1 mismatching leaf', () => {
       }),
       leaf: '0x2222222222222222222222222222222222222222222222222222222222222222',
     });
-  }).toThrow(Error);
+  }).toThrow(FlexError);
 });
 
 test('Should calc branch of tree with 1 leaf', () => {
@@ -32,7 +32,7 @@ test('Should not calc branch of tree with 2 mismatching leaves', () => {
       }),
       leaf: '0x3333333333333333333333333333333333333333333333333333333333333333',
     });
-  }).toThrow(Error);
+  }).toThrow(FlexError);
 });
 
 test('Should calc branch of tree with 2 leaves', () => {
@@ -73,7 +73,7 @@ test('Should not calc branch of tree with 3 mismatching leaves', () => {
       }),
       leaf: '0x4444444444444444444444444444444444444444444444444444444444444444',
     });
-  }).toThrow(Error);
+  }).toThrow(FlexError);
 });
 
 test('Should calc branch of tree with 3 leaves', () => {
