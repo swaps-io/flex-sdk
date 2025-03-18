@@ -6,7 +6,6 @@ export interface FlexCalcTreeHashParams {
   tree: FlexTree;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function flexCalcTreeHash({ tree }: FlexCalcTreeHashParams): FlexHex {
-  return '0x'; // TODO - implement tree hash calc
+  return tree.root;
 }

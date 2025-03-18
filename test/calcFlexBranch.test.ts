@@ -141,8 +141,8 @@ test('Should calc branch of tree with 7 leaves', () => {
   });
   expect(branch).toEqual([
     '0x4444444444444444444444444444444444444444444444444444444444444444',
-    '0xee673dead18e0bd840c75d973babf38f2a3527cf5b86621d5ed7a30b62d247c7',
-    '0xa66456f46c4e6e9c788dbeac5963cc72bdb924c97324d99c55988193e65e92fe',
+    '0x3e92e0db88d6afea9edc4eedf62fffa4d92bcdfc310dccbe943747fe8302e871',
+    '0x64a258e3087fb484320f377df3ce4674c1130c76b832eb01185221c91d796713',
   ]);
 });
 
@@ -157,8 +157,8 @@ test('Should calc every branch of tree with 11 leaves', () => {
     '0x7777777777777777777777777777777777777777777777777777777777777777',
     '0x8888888888888888888888888888888888888888888888888888888888888888',
     '0x9999999999999999999999999999999999999999999999999999999999999999',
-    '0xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-    '0xBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB',
+    '0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+    '0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',
   ];
 
   const tree = flexCalcTree({ leaves });

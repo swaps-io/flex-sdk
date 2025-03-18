@@ -1,4 +1,5 @@
-import { FlexHex, flexCalcHash, flexCompareHex, flexConcatHex } from '../core';
+import { flexCalcCommutativeHash } from '../commutative';
+import { FlexHex } from '../core';
 
 import { FlexBranch } from './data';
 
@@ -10,9 +11,7 @@ export interface FlexCalcBranchHashParams {
 export function flexCalcBranchHash({ leaf, branch }: FlexCalcBranchHashParams): FlexHex {
   let hash = leaf;
   for (const node of branch) {
-    const nodes = [hash, node].sort(flexCompareHex);
-    const data = flexConcatHex(nodes);
-    hash = flexCalcHash(data);
+    hash = flexCalcCommutativeHash([hash, node]);
   }
   return hash;
 }

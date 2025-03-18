@@ -2,6 +2,7 @@ export * from './accumulator';
 export * from './allocateReceive';
 export * from './allocateSend';
 export * from './branch';
+export * from './commutative';
 export * from './component';
 export * from './confirmNative';
 export * from './confirmNativeProof';

@@ -1,7 +1,7 @@
-export class FlexTree {
-  public readonly inner: undefined;
+import { FlexHex } from '../core';
 
-  public constructor() {
-    // TODO - implement tree data
-  }
+export interface FlexTree {
+  root: FlexHex;
+  parents: Record<FlexHex, FlexHex>;
+  siblings: Record<FlexHex, FlexHex>;
 }
