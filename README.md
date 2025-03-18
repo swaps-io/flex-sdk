@@ -17,10 +17,10 @@ The SDK installation process assumes that the project to integrate the SDK into 
    - or `yarn add @swaps-io/flex-sdk`
    - or using other package manager of choice
 2. Provide `@noble/hashes` peer dependency for SDK by installing:
-   - [`viem`](https://www.npmjs.com/package/viem) package (relies on)
-   - or [`ethers`](https://www.npmjs.com/package/ethers) package (relies on)
-   - or other package that relies on `@noble/hashes`
-   - or [`@noble/hashes`](https://www.npmjs.com/package/@noble/hashes) itself
+   - [`@noble/hashes`](https://www.npmjs.com/package/@noble/hashes) package itself
+   - or [`viem`](https://www.npmjs.com/package/viem) package (uses `@noble/hashes`)
+   - or [`ethers`](https://www.npmjs.com/package/ethers) package (uses `@noble/hashes`)
+   - or other package that uses `@noble/hashes`
 
 > [!NOTE]
 >
