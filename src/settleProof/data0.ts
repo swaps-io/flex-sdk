@@ -1,4 +1,4 @@
-import { FLEX_MAX_PROOF_CHAIN } from '../constants/proof';
+import { FLEX_MAX_PROOF_CHAIN } from '../constants';
 import { FlexError, FlexHex, FlexToHexValue, flexConcatHex, flexToHex } from '../core';
 import { flexPackFlags } from '../flags';
 

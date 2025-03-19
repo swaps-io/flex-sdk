@@ -7,12 +7,12 @@ import { FlexHex, FlexToHexValue, flexConcatHex, flexToHex } from '../core';
  */
 export interface FlexEncodeAllocateReceiveData0Params {
   /**
-   * Address of receiver to allocate nonce buckets (slots) for (20 bytes).
+   * Address of receiver to allocate nonce buckets (slots) for _(20 bytes)_.
    */
   receiver: FlexToHexValue;
 
   /**
-   * Nonce to calculate allocation start bucket (slot) from (6 bytes).
+   * Nonce to calculate allocation start bucket (slot) from _(6 bytes)_.
    *
    * > [!TIP]
    * >
@@ -24,7 +24,7 @@ export interface FlexEncodeAllocateReceiveData0Params {
 
   /**
    * Total number of receive buckets (slots) to allocate sequentially from with the {@link startNonce | start one}
-   * (6 bytes).
+   * _(6 bytes)_.
    *
    * > [!WARNING]
    * >
@@ -50,7 +50,7 @@ export interface FlexEncodeAllocateReceiveData0Params {
  *
  * @param params Function {@link FlexEncodeAllocateReceiveData0Params | parameters}.
  *
- * @returns Allocate receive data #0 (32 bytes).
+ * @returns Allocate receive data #0 _(32 bytes)_.
  *
  * @category Allocate Receive
  */

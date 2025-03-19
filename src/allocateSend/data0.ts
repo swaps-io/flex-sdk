@@ -7,12 +7,12 @@ import { FlexHex, FlexToHexValue, flexConcatHex, flexToHex } from '../core';
  */
 export interface FlexEncodeAllocateSendData0Params {
   /**
-   * Address of sender to allocate group buckets (slots) for (20 bytes).
+   * Address of sender to allocate group buckets (slots) for _(20 bytes)_.
    */
   sender: FlexToHexValue;
 
   /**
-   * Group to use as allocation start bucket (slot) (6 bytes).
+   * Group to use as allocation start bucket (slot) _(6 bytes)_.
    *
    * > [!TIP]
    * >
@@ -24,7 +24,7 @@ export interface FlexEncodeAllocateSendData0Params {
 
   /**
    * Total number of group buckets (slots) to allocate sequentially from with the {@link startGroup | start one}
-   * (6 bytes).
+   * _(6 bytes)_.
    */
   totalBuckets: FlexToHexValue;
 }
@@ -46,7 +46,7 @@ export interface FlexEncodeAllocateSendData0Params {
  *
  * @param params Function {@link FlexEncodeAllocateSendData0Params | parameters}.
  *
- * @returns Allocate send data #0 (32 bytes).
+ * @returns Allocate send data #0 _(32 bytes)_.
  *
  * @category Allocate Send
  */

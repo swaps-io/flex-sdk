@@ -105,6 +105,7 @@ const paths = [
   'interfaces/events/FlexSend.sol',
   'interfaces/events/FlexSendSave.sol',
   'interfaces/events/FlexSendAmount.sol',
+  'interfaces/events/FlexSendFail.sol',
   'interfaces/events/FlexConfirm.sol',
   'interfaces/views/IFlexReceiveHash.sol',
   'interfaces/views/domains/IFlexSettleNativeDomain.sol',

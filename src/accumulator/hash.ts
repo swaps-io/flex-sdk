@@ -7,12 +7,12 @@ import { FlexHex, FlexToHexValue, flexCalcHash, flexConcatHex, flexSliceHex, fle
  */
 export interface FlexCalcAccumulatorHashParams {
   /**
-   * Accumulator hash before (20 bytes).
+   * Accumulator hash before _(20 bytes)_.
    */
   hashBefore: FlexToHexValue;
 
   /**
-   * Hash to add to accumulator (32 bytes).
+   * Hash to add to accumulator _(32 bytes)_.
    */
   hashToAdd: FlexToHexValue;
 }
@@ -26,7 +26,7 @@ export interface FlexCalcAccumulatorHashParams {
  *
  * @param params Function {@link FlexCalcAccumulatorHashParams | parameters}.
  *
- * @returns New accumulator hash (20 bytes).
+ * @returns New accumulator hash _(20 bytes)_.
  *
  * @category Accumulator
  */

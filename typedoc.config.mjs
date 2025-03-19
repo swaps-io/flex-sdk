@@ -1,4 +1,5 @@
-import contractMapping from './tools/contractmap.mjs';
+import categories from './tools/doccategory.mjs';
+import contractMap from './tools/doccontract.mjs';
 
 /** @type {import('typedoc').TypeDocOptions} */
 const options = {
@@ -9,50 +10,11 @@ const options = {
   },
   treatWarningsAsErrors: true,
   excludePrivate: true,
-  categoryOrder: [
-    'Accumulator',
-    'Allocate Receive',
-    'Allocate Send',
-    'Branch',
-    'Commutative',
-    'Component',
-    'Confirm Native',
-    'Confirm Native Proof',
-    'Confirm Token',
-    'Confirm Token Proof',
-    'Constants',
-    'Core',
-    'Flags',
-    'Receive',
-    'Receive From',
-    'Receive Native',
-    'Receive Token',
-    'Receive Token From',
-    'Refund Native',
-    'Refund Native Proof',
-    'Refund Token',
-    'Refund Token Proof',
-    'Send',
-    'Send Fail',
-    'Send Float',
-    'Send Native',
-    'Send Native Float',
-    'Send Save',
-    'Send Token',
-    'Send Token Float',
-    'Settle',
-    'Settle Native',
-    'Settle Native Proof',
-    'Settle Proof',
-    'Settle Token',
-    'Settle Token Proof',
-    'Tree',
-    '*',
-  ],
+  categoryOrder: categories,
   excludeExternals: true,
   externalPattern: [],
   externalSymbolLinkMappings: {
-    global: contractMapping,
+    global: contractMap,
   },
 };
 export default options;
