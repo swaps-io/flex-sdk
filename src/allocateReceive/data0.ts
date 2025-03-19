@@ -7,7 +7,7 @@ import { FlexHex, FlexToHexValue, flexConcatHex, flexToHex } from '../core';
  */
 export interface FlexEncodeAllocateReceiveData0Params {
   /**
-   * Receiver account to allocate buckets (slots) for (20 bytes).
+   * Address of receiver to allocate nonce buckets (slots) for (20 bytes).
    */
   receiver: FlexToHexValue;
 
@@ -37,8 +37,8 @@ export interface FlexEncodeAllocateReceiveData0Params {
  * Encodes data #0 for allocate receive contract call.
  *
  * Receive allocation allows to pre-occupy a range of _cold_ (empty) storage slots for later use as _hot_ ones. This can
- * save costs (allocating slots when gas is cheaper) and allow to avoid allocation unevenness (when slots are limited in
- * use and new ones are needed from time to time).
+ * save costs (allocating slots when gas is cheaper) and allows to avoid allocation unevenness (when slots are limited
+ * in use and new ones are needed from time to time).
  *
  * If allocation range contains already occupied slots - those are simply skipped with no reverts. For this reason
  * caller should be mindful about managing allocation ranges to avoid unnecessary gas waste on-chain.
