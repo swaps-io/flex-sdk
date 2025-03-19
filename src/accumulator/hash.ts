@@ -20,6 +20,10 @@ export interface FlexCalcAccumulatorHashParams {
 /**
  * Calculates new accumulator hash from accumulator hash before and arbitrary hash to add.
  *
+ * Related contracts:
+ * - {@link !FlexHashAccumulator | `FlexHashAccumulator`}
+ * - {@link !FlexHashTree | `FlexHashTree`}
+ *
  * @param params Function {@link FlexCalcAccumulatorHashParams | parameters}.
  *
  * @returns New accumulator hash (20 bytes).

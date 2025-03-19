@@ -1,5 +1,7 @@
+import contractMapping from './tools/contractmap.mjs';
+
 /** @type {import('typedoc').TypeDocOptions} */
-module.exports = {
+const options = {
   entryPoints: ['./src/index.ts'],
   out: 'docs',
   validation: {
@@ -49,4 +51,8 @@ module.exports = {
   ],
   excludeExternals: true,
   externalPattern: [],
+  externalSymbolLinkMappings: {
+    global: contractMapping,
+  },
 };
+export default options;
