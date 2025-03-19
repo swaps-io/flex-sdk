@@ -22,7 +22,8 @@ export type FlexToHexValue = FlexHex | number | bigint | Uint8Array;
 /**
  * Converts {@link FlexToHexValue | value} into {@link FlexHex | hex string} of specified size in bytes.
  *
- * Values smaller in size are left-padded with zeros. Throws error for values that don't fit into specified size.
+ * Values smaller in size are left-padded with zeros. Throws {@link FlexError | error} for values that don't fit into
+ * specified size.
  *
  * For number-like values only non-negative integers are supported. Fraction parts are omitted, and negative values
  * trigger error throw.
