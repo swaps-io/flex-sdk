@@ -40,7 +40,7 @@ export function flexEncodeReceiveAccumulatorHash(params: FlexEncodeReceiveAccumu
  */
 export interface FlexCalcReceiveAccumulatorHashParams {
   /**
-   * Accumulator hash before _(20 bytes)_.
+   * Receive accumulator hash before _(20 bytes)_.
    */
   hashBefore: FlexToHexValue;
 

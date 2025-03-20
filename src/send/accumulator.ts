@@ -13,7 +13,7 @@ export interface FlexEncodeSendAccumulatorDataParams {
   orderHash: FlexToHexValue;
 
   /**
-   * Sent order start time to encode into send accumulator {@link flexCalcAccumulatorHash | addable} hash _(32 bytes)_.
+   * Sent order start time to encode into send accumulator {@link flexCalcAccumulatorHash | addable} hash _(6 bytes)_.
    */
   start: FlexToHexValue;
 }
@@ -44,8 +44,19 @@ export function flexEncodeSendAccumulatorData(params: FlexEncodeSendAccumulatorD
  * @category Send
  */
 export interface FlexCalcSendAccumulatorHashParams {
+  /**
+   * Send accumulator hash before _(20 bytes)_.
+   */
   hashBefore: FlexToHexValue;
+
+  /**
+   * Sent order hash to add to accumulator _(32 bytes)_.
+   */
   orderHash: FlexToHexValue;
+
+  /**
+   * Sent order start time to add to accumulator _(6 bytes)_.
+   */
   start: FlexToHexValue;
 }
 
