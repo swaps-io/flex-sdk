@@ -28,5 +28,5 @@ export type FlexCompareResult = 0 | 1 | -1;
  */
 export function flexCompareHex(left: FlexHex, right: FlexHex): FlexCompareResult {
   const diff = BigInt(left) - BigInt(right);
-  return diff > 0 ? 1 : diff < 0 ? -1 : 0;
+  return diff > 0n ? 1 : diff < 0n ? -1 : 0;
 }
