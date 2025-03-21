@@ -38,7 +38,7 @@ export interface FlexEncodeSendNativeDataParams {
   duration: FlexToHexValue;
 
   /**
-   * Send group index selected by the {@link sender} _(6 bytes)_.
+   * Send native group index selected by the {@link sender} _(6 bytes)_.
    */
   group: FlexToHexValue;
 }

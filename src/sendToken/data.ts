@@ -43,7 +43,7 @@ export interface FlexEncodeSendTokenDataParams {
   duration: FlexToHexValue;
 
   /**
-   * Send group index selected by the {@link sender} _(6 bytes)_.
+   * Send token group index selected by the {@link sender} _(6 bytes)_.
    */
   group: FlexToHexValue;
 }
