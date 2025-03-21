@@ -15,7 +15,7 @@ export interface FlexCalcReceiveTokenHashParams {
   domain: FlexToHexValue;
 
   /**
-   * Receive token component data to calculate hash of _(32 bytes each)_.
+   * Receive token component data to calculate hash of.
    */
   data: Pick<FlexReceiveTokenData, 'receiveFromData'>;
 }
@@ -26,6 +26,8 @@ export interface FlexCalcReceiveTokenHashParams {
  * Related contracts:
  * - {@link !FlexReceiveTokenFacet | `FlexReceiveTokenFacet`}
  * - {@link !IFlexReceiveToken | `IFlexReceiveToken`}
+ * - {@link !FlexReceiveTokenDomainFacet | `FlexReceiveTokenDomainFacet`}
+ * - {@link !IFlexReceiveTokenDomain | `IFlexReceiveTokenDomain`}
  *
  * @param params Function {@link FlexCalcReceiveTokenHashParams | parameters}.
  *

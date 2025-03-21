@@ -87,6 +87,8 @@ export interface FlexReceiveNativeData {
  * Related contracts:
  * - {@link !FlexReceiveNativeFacet | `FlexReceiveNativeFacet`}
  * - {@link !IFlexReceiveNative | `IFlexReceiveNative`}
+ * - {@link !FlexReceiveNativeDomainFacet | `FlexReceiveNativeDomainFacet`}
+ * - {@link !IFlexReceiveNativeDomain | `IFlexReceiveNativeDomain`}
  *
  * @param params Function {@link FlexEncodeReceiveNativeDataParams | parameters}.
  *

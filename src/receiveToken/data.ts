@@ -98,6 +98,8 @@ export interface FlexReceiveTokenData {
  * Related contracts:
  * - {@link !FlexReceiveTokenFacet | `FlexReceiveTokenFacet`}
  * - {@link !IFlexReceiveToken | `IFlexReceiveToken`}
+ * - {@link !FlexReceiveTokenDomainFacet | `FlexReceiveTokenDomainFacet`}
+ * - {@link !IFlexReceiveTokenDomain | `IFlexReceiveTokenDomain`}
  *
  * @param params Function {@link FlexEncodeReceiveTokenDataParams | parameters}.
  *

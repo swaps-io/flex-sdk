@@ -15,7 +15,7 @@ export interface FlexCalcReceiveNativeHashParams {
   domain: FlexToHexValue;
 
   /**
-   * Receive native component data to calculate hash of _(32 bytes each)_.
+   * Receive native component data to calculate hash of.
    */
   data: Pick<FlexReceiveNativeData, 'receiveFromData'>;
 }
@@ -26,6 +26,8 @@ export interface FlexCalcReceiveNativeHashParams {
  * Related contracts:
  * - {@link !FlexReceiveNativeFacet | `FlexReceiveNativeFacet`}
  * - {@link !IFlexReceiveNative | `IFlexReceiveNative`}
+ * - {@link !FlexReceiveNativeDomainFacet | `FlexReceiveNativeDomainFacet`}
+ * - {@link !IFlexReceiveNativeDomain | `IFlexReceiveNativeDomain`}
  *
  * @param params Function {@link FlexCalcReceiveNativeHashParams | parameters}.
  *
