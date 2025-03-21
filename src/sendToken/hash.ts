@@ -21,7 +21,7 @@ export interface FlexCalcSendTokenHashParams {
 }
 
 /**
- * Calculates hash of receive token component {@link flexEncodeSendTokenData | data}.
+ * Calculates hash of send token component {@link flexEncodeSendTokenData | data}.
  *
  * Related contracts:
  * - {@link !FlexSendTokenFacet | `FlexSendTokenFacet`}
