@@ -7,7 +7,7 @@ import { FlexHex, FlexToHexValue, flexConcatHex, flexToHex } from '../core';
  */
 export interface FlexEncodeReceiveData2Params {
   /**
-   * Address of ERC-20 token to perform receive of.
+   * Address of ERC-20 token to perform receive of _(20 bytes)_.
    */
   token: FlexToHexValue;
 }
