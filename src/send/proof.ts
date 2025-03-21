@@ -20,9 +20,12 @@ export interface FlexEncodeSendProofParams {
   domain: FlexToHexValue;
 
   /**
-   * Send component data _(32 bytes each)_.
+   * Send component data.
    */
   data: {
+    /**
+     * Send component inner data _(32 bytes each)_.
+     */
     sendData:
       | [FlexToHexValue, FlexToHexValue, FlexToHexValue]
       | [FlexToHexValue, FlexToHexValue, FlexToHexValue, FlexToHexValue];
@@ -31,9 +34,7 @@ export interface FlexEncodeSendProofParams {
   /**
    * _Accumulator_ branch containing:
    * - Branch to send component in the order.
-   * - Send accumulator data:
-   *   - For positive event: from hash before occurred send operation to saved send.
-   *   - For negative event: from base hash before send operation start to saved send after send deadline.
+   * - Send accumulator data from hash before occurred send operation to saved send. after send deadline.
    */
   branch: Readonly<FlexBranch>;
 
@@ -49,9 +50,7 @@ export interface FlexEncodeSendProofParams {
 }
 
 /**
- * Encodes send proof data.
- *
- * Proof can be used for verifying both send success and failure events.
+ * Encodes send proof data for verifying success send event.
  *
  * Send proof requires preliminary {@link flexEncodeSaveSendData0 | send save} operation and its event data.
  *

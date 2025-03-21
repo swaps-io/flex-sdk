@@ -1,27 +1,92 @@
 import { FlexBranch } from '../branch';
 import { flexAssignComponentDomain } from '../component';
-import { FLEX_SEND_PROOF_NATIVE_DATA3 } from '../constants';
+import { FLEX_SEND_PROOF_BASE_HASH_SKIP, FLEX_SEND_PROOF_NATIVE_DATA3 } from '../constants';
 import { FlexHex, FlexToHexValue, flexConcatHex, flexToHex } from '../core';
 
+/**
+ * Parameters for {@link flexEncodeSendFailProof} function.
+ *
+ * @category Send Fail
+ */
 export interface FlexEncodeSendFailProofParams {
+  /**
+   * Proof variant index for routing header _(32 bytes)_.
+   */
   variant: FlexToHexValue;
+
+  /**
+   * Domain send component data was assigned to _(8 bytes)_.
+   */
   domain: FlexToHexValue;
+
+  /**
+   * Send component data.
+   */
   data: {
+    /**
+     * Send component inner data _(32 bytes each)_.
+     */
     sendData:
       | [FlexToHexValue, FlexToHexValue, FlexToHexValue]
       | [FlexToHexValue, FlexToHexValue, FlexToHexValue, FlexToHexValue];
   };
+
+  /**
+   * _Accumulator_ branch containing:
+   * - Branch to send component in the order.
+   * - Send accumulator data from base hash before send operation start to saved send after send deadline.
+   */
   branch: Readonly<FlexBranch>;
+
+  /**
+   * Save bucket value (obtainable from `FlexSendSave` event) _(32 bytes)_.
+   */
   saveBucket: FlexToHexValue;
+
+  /**
+   * Save time (obtainable from `FlexSendSave` event) _(32 bytes)_.
+   */
   saveTime: FlexToHexValue;
-  failBaseHash: FlexToHexValue;
+
+  /**
+   * Start hash element in accumulator {@link branch}. It's used instead of order hash of the send to - because of
+   * proofing _non-presented_ event.
+   *
+   * Can have special {@link FLEX_SEND_PROOF_BASE_HASH_SKIP | `skip`} value to exclude start order from the accumulator
+   * sequence (i.e. 0 elements instead of 1 even when list of "hashes after" is empty).
+   *
+   * > [!NOTE]
+   * >
+   * > Start hash should correspond to order with send time _after_ deadline of the proof target.
+   */
+  failBaseHash: FlexToHexValue | 'skip';
 }
 
+/**
+ * Encodes send proof data for verifying success send event.
+ *
+ * Send proof requires preliminary {@link flexEncodeSaveSendData0 | send save} operation and its event data.
+ *
+ * Related contracts:
+ * - {@link !FlexSendProofVerifier | `FlexSendProofVerifier`}
+ * - {@link !IFlexSendProofVerifier | `IFlexSendProofVerifier`}
+ * - {@link !IFlexSaveSend | `IFlexSaveSend`}
+ * - {@link !FlexSendSave | `FlexSendSave`}
+ *
+ * @param params Function {@link FlexEncodeSendFailProofParams | parameters}.
+ *
+ * @returns Send proof hex data _(≥320 bytes)_.
+ *
+ * @category Send Fail
+ */
 export function flexEncodeSendFailProof(params: FlexEncodeSendFailProofParams): FlexHex {
   let data = params.data.sendData;
   if (data.length === 3) {
     data = [...data, FLEX_SEND_PROOF_NATIVE_DATA3]; // Native sendData3
   }
+
+  const failBaseHash =
+    params.failBaseHash === 'skip' ? FLEX_SEND_PROOF_BASE_HASH_SKIP : flexToHex(params.failBaseHash, 32);
 
   return flexConcatHex([
     // ProofHeader
@@ -30,7 +95,7 @@ export function flexEncodeSendFailProof(params: FlexEncodeSendFailProofParams): 
     flexAssignComponentDomain({ domain: params.domain, data: data[0] }), // #1: sendData0
     ...data.slice(1).map((d) => flexToHex(d, 32)), // #2: sendData1, #3: sendData2, #4: sendData3
     flexToHex(288, 32), // #5: orderBranch offset (#9x32)
-    flexToHex(params.failBaseHash, 32), // #6: failBaseHash
+    failBaseHash, // #6: failBaseHash
     flexToHex(params.saveBucket, 32), // #7: saveBucket
     flexConcatHex([flexToHex(0, 26), flexToHex(params.saveTime, 6)]), // #8: saveTime
     flexToHex(params.branch.length, 32), // #9: orderBranch length

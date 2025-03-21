@@ -12,7 +12,7 @@ export interface FlexAssignComponentDomainParams {
   domain: FlexToHexValue;
 
   /**
-   * Data to assign {@link} domain to _(32 bytes)_.
+   * Data to assign {@link domain} to _(32 bytes)_.
    */
   data: FlexToHexValue;
 }
