@@ -77,7 +77,12 @@ export interface FlexReceiveNativeData {
 /**
  * Encodes data for receive native call.
  *
- * Receive native call is performed by _sender_ using _receiver_ signature, passing native amount as call `msg.value`.
+ * Receive native call is performed by _sender_ using _receiver_ signature. Native asset is passed as `msg.value` with
+ * the contract call.
+ *
+ * Received native asset is locked in contract with {@link FLEX_RECEIVE_STATE_RECEIVED | "received"} state until it's
+ * settled as {@link FLEX_RECEIVE_STATE_CONFIRMED | "confirmed"} or {@link FLEX_RECEIVE_STATE_REFUNDED | "refunded"}
+ * after corresponding verification.
  *
  * Related contracts:
  * - {@link !FlexReceiveNativeFacet | `FlexReceiveNativeFacet`}
