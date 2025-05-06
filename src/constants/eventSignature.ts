@@ -69,20 +69,6 @@ export const FLEX_SEND_EVENT_SIGNATURE = '0x4cea8b710e627c582bfc256cb3c9376be297
 export const FLEX_SEND_AMOUNT_EVENT_SIGNATURE = '0x1178358da04959a2bba169278fda41863bbe6379f3a112f6c6f8921b7fce1c85';
 
 /**
- * `FlexSendSave` event signature (topic #0) _(32 bytes)_.
- *
- * > [!NOTE]
- * >
- * > Computed as `keccak256("FlexSendSave(bytes32,bytes32,bytes32)")`.
- *
- * Related contracts:
- * - {@link !FlexSendSave | `FlexSendSave`}
- *
- * @category Constants • Event Signature
- */
-export const FLEX_SEND_SAVE_EVENT_SIGNATURE = '0x18f4b0b3fca5b88f1288caa890e382a0e49c3c4a82aaf23df30a90c042940b71';
-
-/**
  * `FlexSendFail` event signature (topic #0) _(32 bytes)_.
  *
  * > [!NOTE]

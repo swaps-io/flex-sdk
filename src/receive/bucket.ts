@@ -69,7 +69,7 @@ export interface FlexEncodeReceiveStateOffsetParams {
  */
 export function flexEncodeReceiveStateOffset(params: FlexEncodeReceiveStateOffsetParams): bigint {
   const nonce = BigInt(flexToHex(params.nonce, 12));
-  const nonceOffset = nonce % FLEX_RECEIVE_NONCES_PER_BUCKET;
+  const nonceOffset = nonce % FLEX_RECEIVE_NONCES_PER_BUCKET << 1n;
   return nonceOffset;
 }
 
