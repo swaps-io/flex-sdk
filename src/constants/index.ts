@@ -5,3 +5,4 @@ export * from './receive';
 export * from './receiveState';
 export * from './send';
 export * from './sendFloat';
+export * from './sendState';
