@@ -80,9 +80,6 @@ need (or at least should start with) one of the _higher-level_ main functions fr
 - _Proofing_:
   - [`flexCalcReceiveAccumulatorHash`](link://functions/flexCalcReceiveAccumulatorHash.html)
   - [`flexCalcSendAccumulatorHash`](link://functions/flexCalcSendAccumulatorHash.html)
-  - [`flexEncodeSendProof`](link://functions/flexEncodeSendProof.html)
-  - [`flexEncodeSendFailProof`](link://functions/flexEncodeSendFailProof.html)
-  - [`flexEncodeSaveSendData0`](link://functions/flexEncodeSaveSendData0.html)
 
 - _Allocation_:
   - [`flexEncodeAllocateReceiveData0`](link://functions/flexEncodeAllocateReceiveData0.html)

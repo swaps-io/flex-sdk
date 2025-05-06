@@ -31,24 +31,14 @@ export interface FlexEncodeSendTokenFloatDataParams {
   amount: FlexToHexValue;
 
   /**
-   * Start of send token operation _(6 bytes)_.
-   *
-   * Send operation cannot be performed earlier than this time. Also serves for controlling send operations
-   * _chronological_ order.
+   * Deadline of send token operation, i.e. time after which attempt to perform send operation will fail _(6 bytes)_.
    */
-  start: FlexToHexValue;
+  deadline: FlexToHexValue;
 
   /**
-   * Duration of send token operation _(6 bytes)_.
-   *
-   * Forms _deadline_ when added to {@link start}. Attempt to perform send operation after the deadline will fail.
+   * Nonce of send token operation selected by {@link sender} _(6 bytes)_.
    */
-  duration: FlexToHexValue;
-
-  /**
-   * Send token group index selected by the {@link sender} _(6 bytes)_.
-   */
-  group: FlexToHexValue;
+  nonce: FlexToHexValue;
 
   /**
    * Should skip axillary `FlexSendAmount` event emit or not.
@@ -103,9 +93,8 @@ export function flexEncodeSendTokenFloatData(params: FlexEncodeSendTokenFloatDat
       sender: params.sender,
     }),
     flexEncodeSendData1({
-      start: params.start,
-      duration: params.duration,
-      group: params.group,
+      deadline: params.deadline,
+      nonce: params.nonce,
       receiver: params.receiver,
     }),
     flexEncodeSendFloatData2({

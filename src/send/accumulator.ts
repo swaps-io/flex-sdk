@@ -1,21 +1,16 @@
 import { flexCalcAccumulatorHash } from '../accumulator';
-import { FlexHex, FlexToHexValue, flexConcatHex, flexSliceHex, flexToHex } from '../core';
+import { FlexHex, FlexToHexValue, flexToHex } from '../core';
 
 /**
- * Parameters for {@link flexEncodeSendAccumulatorData} function.
+ * Parameters for {@link flexEncodeSendAccumulatorHash} function.
  *
  * @category Send
  */
-export interface FlexEncodeSendAccumulatorDataParams {
+export interface FlexEncodeSendAccumulatorHashParams {
   /**
    * Sent order hash to encode into send accumulator {@link flexCalcAccumulatorHash | addable} hash _(32 bytes)_.
    */
   orderHash: FlexToHexValue;
-
-  /**
-   * Sent order start time to encode into send accumulator {@link flexCalcAccumulatorHash | addable} hash _(6 bytes)_.
-   */
-  start: FlexToHexValue;
 }
 
 /**
@@ -28,14 +23,14 @@ export interface FlexEncodeSendAccumulatorDataParams {
  * Related contract:
  * - {@link !FlexSendStateUpdate | `FlexSendStateUpdate`}
  *
- * @param params Function {@link FlexEncodeSendAccumulatorDataParams | parameters}.
+ * @param params Function {@link FlexEncodeSendAccumulatorHashParams | parameters}.
  *
  * @returns Hash addable to send accumulator _(32 bytes)_.
  *
  * @category Send
  */
-export function flexEncodeSendAccumulatorData(params: FlexEncodeSendAccumulatorDataParams): FlexHex {
-  return flexConcatHex([flexSliceHex(flexToHex(params.orderHash, 32), 0, 26), flexToHex(params.start, 6)]);
+export function flexEncodeSendAccumulatorHash(params: FlexEncodeSendAccumulatorHashParams): FlexHex {
+  return flexToHex(params.orderHash, 32);
 }
 
 /**
@@ -53,11 +48,6 @@ export interface FlexCalcSendAccumulatorHashParams {
    * Sent order hash to add to accumulator _(32 bytes)_.
    */
   orderHash: FlexToHexValue;
-
-  /**
-   * Sent order start time to add to accumulator _(6 bytes)_.
-   */
-  start: FlexToHexValue;
 }
 
 /**
@@ -70,6 +60,6 @@ export interface FlexCalcSendAccumulatorHashParams {
  * @category Send
  */
 export function flexCalcSendAccumulatorHash(params: FlexCalcSendAccumulatorHashParams): FlexHex {
-  const hashToAdd = flexEncodeSendAccumulatorData({ orderHash: params.orderHash, start: params.start });
+  const hashToAdd = flexEncodeSendAccumulatorHash({ orderHash: params.orderHash });
   return flexCalcAccumulatorHash({ hashBefore: params.hashBefore, hashToAdd });
 }

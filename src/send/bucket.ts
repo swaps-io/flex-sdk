@@ -1,3 +1,4 @@
+import { FLEX_SEND_NONCES_PER_BUCKET } from '../constants';
 import { FlexHex, FlexToHexValue, flexConcatHex, flexToHex } from '../core';
 
 /**
@@ -12,15 +13,17 @@ export interface FlexEncodeSendStateBucketParams {
   sender: FlexToHexValue;
 
   /**
-   * Group send is performed in _(12 bytes)_.
+   * Send nonce to determine bucket for _(12 bytes)_.
+   *
+   * {@link FLEX_SEND_NONCES_PER_BUCKET | Multiple} nonces can fit into one bucket.
    */
-  group: FlexToHexValue;
+  nonce: FlexToHexValue;
 }
 
 /**
  * Encodes send bucket (i.e. mapping key).
  *
- * Bucket is owned by sender and targets selected send group.
+ * Bucket is owned by sender and can hold {@link FLEX_SEND_NONCES_PER_BUCKET | multiple} nonces.
  *
  * Related contracts:
  * - {@link !FlexSendStateBucket | `FlexSendStateBucket`}
@@ -32,7 +35,42 @@ export interface FlexEncodeSendStateBucketParams {
  * @category Send
  */
 export function flexEncodeSendStateBucket(params: FlexEncodeSendStateBucketParams): FlexHex {
-  return flexConcatHex([flexToHex(params.sender, 20), flexToHex(params.group, 12)]);
+  const nonce = BigInt(flexToHex(params.nonce, 12));
+  const nonceBucket = nonce / FLEX_SEND_NONCES_PER_BUCKET;
+  return flexConcatHex([flexToHex(params.sender, 20), flexToHex(nonceBucket, 12)]);
+}
+
+/**
+ * Parameters for {@link flexEncodeSendStateOffset} function.
+ *
+ * @category Send
+ */
+export interface FlexEncodeSendStateOffsetParams {
+  /**
+   * Nonce to calculate send state offset in bucket for _(12 bytes)_.
+   */
+  nonce: FlexToHexValue;
+}
+
+/**
+ * Encodes send bucket state bitmap offset value (i.e. mapping value internals).
+ *
+ * Helps to find exact position of given nonce state in {@link flexEncodeSendStateBucket | calculated bucket} value
+ * that holds {@link FLEX_SEND_NONCES_PER_BUCKET | multiple} nonces.
+ *
+ * Related contracts:
+ * - {@link !FlexSendStateBucket | `FlexSendStateBucket`}
+ *
+ * @param params Function {@link FlexEncodeSendStateOffsetParams | parameters}.
+ *
+ * @returns Send state offset in bucket bitmap _(1 byte)_.
+ *
+ * @category Send
+ */
+export function flexEncodeSendStateOffset(params: FlexEncodeSendStateOffsetParams): bigint {
+  const nonce = BigInt(flexToHex(params.nonce, 12));
+  const nonceOffset = nonce % FLEX_SEND_NONCES_PER_BUCKET;
+  return nonceOffset;
 }
 
 /**
@@ -47,9 +85,9 @@ export interface FlexEncodeSendBucketStateDataParams {
   hash: FlexToHexValue;
 
   /**
-   * Start time of last recorded swap send operation to keep chronology _(6 bytes)_.
+   * Send bucket bitmap of multiple send operation states _(12 bytes)_.
    */
-  time: FlexToHexValue;
+  state: FlexToHexValue;
 }
 
 /**
@@ -65,5 +103,5 @@ export interface FlexEncodeSendBucketStateDataParams {
  * @category Send
  */
 export function flexEncodeSendBucketStateData(params: FlexEncodeSendBucketStateDataParams): FlexHex {
-  return flexConcatHex([flexToHex(params.hash, 20), flexToHex(0, 6), flexToHex(params.time, 6)]);
+  return flexConcatHex([flexToHex(params.hash, 20), flexToHex(params.state, 12)]);
 }

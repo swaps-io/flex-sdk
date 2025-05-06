@@ -7,24 +7,28 @@ import { FlexHex, FlexToHexValue, flexConcatHex, flexToHex } from '../core';
  */
 export interface FlexEncodeAllocateSendData0Params {
   /**
-   * Address of sender to allocate group buckets (slots) for _(20 bytes)_.
+   * Address of sender to allocate nonce buckets (slots) for _(20 bytes)_.
    */
   sender: FlexToHexValue;
 
   /**
-   * Group to use as allocation start bucket (slot) _(6 bytes)_.
+   * Nonce to calculate allocation start bucket (slot) from _(6 bytes)_.
    *
    * > [!TIP]
    * >
-   * > Preferred to be unallocated group that has {@link totalBuckets | multiple} empty buckets after.
+   * > Preferred to be nonce equal to empty bucket start that has {@link totalBuckets | multiple} empty buckets after.
    * >
    * > Attempts to allocate to existing buckets are skipped with no reverts, yet wasting some gas.
    */
-  startGroup: FlexToHexValue;
+  startNonce: FlexToHexValue;
 
   /**
-   * Total number of group buckets (slots) to allocate sequentially from with the {@link startGroup | start one}
+   * Total number of send buckets (slots) to allocate sequentially from with the {@link startNonce | start one}
    * _(6 bytes)_.
+   *
+   * > [!WARNING]
+   * >
+   * > This parameter represents number of _storage slots_, NOT number of _nonces_.
    */
   totalBuckets: FlexToHexValue;
 }
@@ -53,7 +57,7 @@ export interface FlexEncodeAllocateSendData0Params {
 export function flexEncodeAllocateSendData0(params: FlexEncodeAllocateSendData0Params): FlexHex {
   return flexConcatHex([
     flexToHex(params.totalBuckets, 6),
-    flexToHex(params.startGroup, 6),
+    flexToHex(params.startNonce, 6),
     flexToHex(params.sender, 20),
   ]);
 }

@@ -26,24 +26,14 @@ export interface FlexEncodeSendNativeFloatDataParams {
   amount: FlexToHexValue;
 
   /**
-   * Start of send native operation _(6 bytes)_.
-   *
-   * Send operation cannot be performed earlier than this time. Also serves for controlling send operations
-   * _chronological_ order.
+   * Deadline of send native operation, i.e. time after which attempt to perform send operation will fail _(6 bytes)_.
    */
-  start: FlexToHexValue;
+  deadline: FlexToHexValue;
 
   /**
-   * Duration of send native operation _(6 bytes)_.
-   *
-   * Forms _deadline_ when added to {@link start}. Attempt to perform send operation after the deadline will fail.
+   * Nonce of send native operation selected by {@link sender} _(6 bytes)_.
    */
-  duration: FlexToHexValue;
-
-  /**
-   * Send native group index selected by the {@link sender} _(6 bytes)_.
-   */
-  group: FlexToHexValue;
+  nonce: FlexToHexValue;
 
   /**
    * Should skip axillary `FlexSendAmount` event emit or not.
@@ -98,9 +88,8 @@ export function flexEncodeSendNativeFloatData(params: FlexEncodeSendNativeFloatD
       sender: params.sender,
     }),
     flexEncodeSendData1({
-      start: params.start,
-      duration: params.duration,
-      group: params.group,
+      deadline: params.deadline,
+      nonce: params.nonce,
       receiver: params.receiver,
     }),
     flexEncodeSendFloatData2({

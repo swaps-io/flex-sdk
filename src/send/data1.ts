@@ -7,24 +7,14 @@ import { FlexHex, FlexToHexValue, flexConcatHex, flexToHex } from '../core';
  */
 export interface FlexEncodeSendData1Params {
   /**
-   * Start of send operation _(6 bytes)_.
-   *
-   * Send operation cannot be performed earlier than this time. Also serves for controlling send operations
-   * _chronological_ order.
+   * Deadline of send operation, i.e. time after which attempt to perform send operation will fail _(6 bytes)_.
    */
-  start: FlexToHexValue;
+  deadline: FlexToHexValue;
 
   /**
-   * Duration of send operation _(6 bytes)_.
-   *
-   * Forms _deadline_ when added to {@link start}. Attempt to perform send operation after the deadline will fail.
+   * Nonce of send operation selected by sender _(6 bytes)_.
    */
-  duration: FlexToHexValue;
-
-  /**
-   * Send group index selected by the {@link FlexEncodeSendData0Params.sender | sender} _(6 bytes)_.
-   */
-  group: FlexToHexValue;
+  nonce: FlexToHexValue;
 
   /**
    * Address of receiver of sent asset _(20 bytes)_.
@@ -49,10 +39,5 @@ export interface FlexEncodeSendData1Params {
  * @category Send
  */
 export function flexEncodeSendData1(params: FlexEncodeSendData1Params): FlexHex {
-  return flexConcatHex([
-    flexToHex(params.start, 6),
-    flexToHex(params.duration, 4),
-    flexToHex(params.group, 2),
-    flexToHex(params.receiver, 20),
-  ]);
+  return flexConcatHex([flexToHex(params.deadline, 6), flexToHex(params.nonce, 6), flexToHex(params.receiver, 20)]);
 }
